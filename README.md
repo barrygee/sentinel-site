@@ -34,6 +34,8 @@ All in `src/template.html`:
 
 `iss-tle.json` holds the ISS orbit (TLE) the header globe uses. The page reads it on load and every 30 minutes, so replacing the two TLE lines in that file moves the ISS without a rebuild. If the file can't be read, the page falls back to the copy built into `index.html`.
 
+A GitHub Action (`.github/workflows/iss-tle.yml`) refreshes it from CelesTrak every day at 04:17 UTC and commits it when it changes. Run it by hand from **Actions › Update ISS orbit › Run workflow**.
+
 ## GitHub Pages
 
 **Settings › Pages › Build and deployment**: Source **Deploy from a branch**, branch **main**, folder **/ (root)**. The page is then at `https://barrygee.github.io/sentinel-site/`.
