@@ -1122,6 +1122,16 @@ footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-s
 #gllabels .mlp:not(.off){animation:mlpIn .6s ease both}
 @keyframes mlpIn{from{opacity:0}to{opacity:1}}
 #s3labels > *{animation:mlpIn .6s ease both}
+/* Maps: click a screenshot to see it large */
+#sections .ev .th{cursor:zoom-in}
+.lbx{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:clamp(16px,4vw,56px);background:rgba(8,9,12,.95);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s .25s}
+.lbx.on{opacity:1;visibility:visible;transition:opacity .25s ease}
+.lbx img{max-width:100%;max-height:calc(100vh - 140px);box-shadow:0 20px 60px rgba(0,0,0,.5);transform:scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.lbx.on img{transform:none}
+.lbx p{margin:0;font:400 15px/1.4 'Barlow',sans-serif;color:rgba(255,255,255,.8)}
+.lbx .lbc,.lbx .lbp,.lbx .lbn{position:absolute;z-index:2;width:40px;height:40px;display:grid;place-items:center;background:#000;color:#fff;border:0;cursor:pointer;font:400 22px/1 'Barlow',sans-serif}
+.lbx .lbc{top:16px;right:16px}.lbx .lbp{left:16px;top:50%;margin-top:-20px}.lbx .lbn{right:16px;top:50%;margin-top:-20px}
+.lbx button:hover{background:#262626}
 </style>
 <script>document.documentElement.classList.add('js-title')</script>
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1447,19 +1457,19 @@ if(document.fonts){document.fonts.ready.then(fitAll);document.fonts.addEventList
 /* data */
 const D=[
  {k:'Air',glyph:'',src:'ADS-B',name:'Every aircraft in range',sub:'Live aircraft within 250 nm of the map centre',on:'Your chosen ADS-B provider or selected remote SDR',off:'Your local SDR and Sentinel ADS-B decoder',
-  shots:[['air1','Southern England close-up'],['air2','Aircraft detail'],['air3','Alerts'],['air4','Tracking an aircraft'],['air5','Live UK traffic'],['air6','Filter the aircraft list']],
+  shots:[['air1','Live aircraft, coloured by altitude'],['air2','Aircraft details at a click'],['air3','Alerts as they happen'],['air4','Track an aircraft'],['air5','Every aircraft in range'],['air6','Filter the aircraft list']],
   obj:'QTR8139 · B77L · A7-BTD',kv:[['Altitude','28,000 ft'],['Speed','494 kt'],['Heading','300°'],['Vertical','−64 fpm'],['Squawk','2504'],['Position','56.7310°N 5.5544°W']],
   f:['Arrows or silhouettes of each aircraft type, coloured by altitude','Emergency squawks 7700, 7600 and 7500 flagged instantly','Air-to-air refuelling and AWACS overlays','Landing, take-off and overhead alerts','Track any aircraft and keep the map on it']},
  {k:'Space',glyph:'ring',src:'SGP4',name:'Satellites and passes',sub:'Orbits worked out on your computer from TLEs',on:null,off:'TLEs, worked out on your computer',
-  shots:[['space1','ISS over Europe'],['space2','ISS detail, radio and pass'],['space3','Upcoming passes'],['space4','Amateur satellites']],
+  shots:[['space1','Satellites and orbit tracks'],['space2','Radio details and next pass'],['space3','Upcoming passes'],['space4','Filter by category']],
   obj:'ISS (ZARYA)',kv:[['Altitude','415.7 km'],['Velocity','7.667 km/s'],['Heading','114.6°'],['Uplink','145.990 MHz FM'],['Downlink','437.800 MHz FM'],['CTCSS','67.0 Hz']],
   f:['Ground tracks, footprints and the day/night terminator','Next passes with rise time, max elevation and sky plot','Pass alerts about five minutes before rise','Auto-tune your radio to the downlink']},
  {k:'Sea',glyph:'',src:'AIS',name:'Vessels on the water',sub:'Live ships around the coast, online or from your own radio',on:'Your chosen AIS provider or selected remote SDR',off:'Your local SDR and Sentinel AIS decoder',
-  shots:[['sea1','Dover Strait shipping'],['sea2','UK waters overview'],['sea3','Vessel detail and track'],['sea4','Search vessels']],
+  shots:[['sea1','Vessels with names and headings'],['sea2','Every vessel in range'],['sea3','Vessel details and track'],['sea4','Search vessels']],
   obj:'Victoria of Wight · Passenger',kv:[['MMSI','232015630'],['IMO','9791028'],['Callsign','MDCW6'],['Type','Passenger'],['Fix','20:05:06Z']],
   f:['Vessel name, type, MMSI, IMO and callsign','Course, speed and track history','Search and filter the shipping in view','Follow a vessel across the map']},
  {k:'Land',glyph:'sq',src:'APRS',name:'Built for radio amateurs',sub:'Every UK repeater, and the APRS stations your radio hears',on:'Built-in data source or your selected remote SDR',onLabel:'Source',off:'Your local SDR and Sentinel APRS decoder',
-  shots:[['land1','UK repeater directory'],['land2','Repeater list'],['land3','Repeater detail'],['land4','North East close-up']],
+  shots:[['land1','Every UK repeater'],['land2','Repeater list and filters'],['land3','Repeater details'],['land4','Zoom in on a region']],
   obj:'GB3CD · Crook',kv:[['Band','2 m'],['Mode','FM · Fusion'],['Listed','Every UK repeater'],['Updated','Daily']],
   f:['Output and input frequencies, offset, CTCSS and status','Select an output frequency to tune your radio','Search by callsign, town, band or mode','APRS stations with symbols and raw packets']},
  {k:'SDR',glyph:'sq',c:'var(--mute)',src:'RTL-SDR',name:'Your radios, anywhere',sub:'Spectrum, waterfall, audio and recording in the browser',on:'Your radios',off:'Your radios',
@@ -2102,5 +2112,16 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
  const ps=getComputedStyle(wr),r=wr.getBoundingClientRect(),gl=g.getBoundingClientRect(),L=r.left+parseFloat(ps.paddingLeft),R=r.right-parseFloat(ps.paddingRight);
  const f=bs[0],l=bs[bs.length-1],fb=f.querySelector('b')||f,lb=l.querySelector('b')||l;const offL=fb.getBoundingClientRect().left-f.getBoundingClientRect().left,offR=l.getBoundingClientRect().right-lb.getBoundingClientRect().right;
  g.style.setProperty('padding-left',Math.max(0,L-gl.left-offL)+'px','important');const pr=gl.right-R-offR;g.style.setProperty('padding-right',Math.max(0,isFinite(pr)?pr:(L-gl.left))+'px','important')};addEventListener('resize',al);addEventListener('load',al);document.fonts&&document.fonts.ready.then(al);setTimeout(al,400)}</script>
+<script>/* Maps lightbox: click a screenshot to open it large; arrows or ←/→ step through that section, Esc or a click outside closes */
+{const box=document.createElement('div');box.className='lbx';box.setAttribute('role','dialog');box.setAttribute('aria-modal','true');box.setAttribute('aria-label','Screenshot');
+ box.innerHTML='<button class="lbc" aria-label="Close">×</button><button class="lbp" aria-label="Previous">‹</button><img alt=""><p></p><button class="lbn" aria-label="Next">›</button>';document.body.appendChild(box);
+ const im=box.querySelector('img'),cap=box.querySelector('p');let list=[],i=0,last=null;
+ const show=()=>{const e=list[i];if(!e)return;const t=e.querySelector('img');im.src=t.src;im.alt=t.alt||'';const c=e.querySelector('span');cap.textContent=c?c.textContent:'';box.querySelector('.lbp').hidden=box.querySelector('.lbn').hidden=list.length<2};
+ const open=e=>{const row=e.closest('.tl')||e.parentElement;list=[...row.querySelectorAll('.ev')].filter(x=>x.querySelector('.th img'));i=Math.max(0,list.indexOf(e));last=document.activeElement;show();box.classList.add('on');document.documentElement.style.overflow='hidden';box.querySelector('.lbc').focus()};
+ const close=()=>{box.classList.remove('on');document.documentElement.style.overflow='';last&&last.focus&&last.focus()};
+ document.addEventListener('click',ev=>{const t=ev.target.closest('#sections .ev .th');if(t){ev.preventDefault();open(t.closest('.ev'))}});
+ box.addEventListener('click',ev=>{if(ev.target===box||ev.target.closest('.lbc'))close();else if(ev.target.closest('.lbp')){i=(i-1+list.length)%list.length;show()}else if(ev.target.closest('.lbn')){i=(i+1)%list.length;show()}});
+ addEventListener('keydown',ev=>{if(!box.classList.contains('on'))return;if(ev.key==='Escape')close();else if(ev.key==='ArrowLeft'){i=(i-1+list.length)%list.length;show()}else if(ev.key==='ArrowRight'){i=(i+1)%list.length;show()}});
+ document.querySelectorAll('#sections .ev .th').forEach(t=>{t.setAttribute('tabindex','0');t.setAttribute('role','button');t.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(t.closest('.ev'))}})})}</script>
 </body>
 </html>
