@@ -1106,6 +1106,14 @@ footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-s
 /* tabs in the page's condensed label face, not stretched */
 #viewer .xtabs .row b,.mtabs button{font:700 13px/1.3 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important;text-transform:uppercase!important}
 .mtabs button[aria-selected=false]{color:rgba(255,255,255,.45)!important}.mtabs button[aria-selected=false]:hover{color:#fff!important}
+/* consistency pass */
+#viewer.xv .xtabs .row b{font:700 13px/1.3 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important}
+#viewer .xcap,#viewer #tag,#viewer .xdots-under ~ * .cap,#viewer [class*=cap]{font-family:'Barlow Condensed','Barlow',sans-serif}
+.ev span,.tl .ev span{font:400 15px/1.45 'Barlow',sans-serif!important}
+.dh h3,.xi-h h3{letter-spacing:-.03em!important}
+#install .sh em,.netc em{font:700 12px/1 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important}
+#install .sh span{font-weight:400!important;letter-spacing:.12em!important}
+#viewer #bar .seg button{font:700 12px/1.3 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important}
 </style>
 <script>document.documentElement.classList.add('js-title')</script>
 </head>
@@ -1211,7 +1219,7 @@ footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-s
     <div class="wrap">
 <div class="shead"><div class="spec"><span>Quick start</span><span>Docker Compose</span></div><span class="smark" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.6" fill="none" stroke="currentColor" stroke-width="2.3"/><circle cx="10" cy="10" r="3.4" fill="#6b6b6b"/></svg></span><h2 class="giant fit">Set up</h2><div class="lede ll" data-points="install"><span>All you need is Docker with Docker Compose</span><span>Export every setting, frequency and config, and restore them anywhere</span><span>It runs on your hardware, so what you track stays with you</span></div></div>
       <div class="starter">
-        <div class="mtabs" role="tablist"><button role="tab" data-m="full" aria-selected="true">Full Sentinel</button><button role="tab" data-m="mgr" aria-selected="false">SDR Manager only</button><span class="mnote" data-for="full">The map, every section and your radios, on a Mac or Linux computer</span><span class="mnote" data-for="mgr" hidden></span></div>
+        <div class="mtabs" role="tablist"><button role="tab" data-m="full" aria-selected="true">Full Sentinel</button><button role="tab" data-m="mgr" aria-selected="false">SDR Manager only</button><span class="mnote" data-for="full"></span><span class="mnote" data-for="mgr" hidden></span></div>
         <div class="acc" data-mode="full"><div class="st open"><button class="sh" aria-expanded="true"><em>01</em><b>Install Docker</b><span>Free, once per computer</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Download Docker Desktop from <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">docker.com</a>. On a Mac, pick Apple Silicon or Intel to match your Mac. On Linux, install Docker Engine instead.</li><li>Open Docker and wait until it says Engine running.</li><li>You don’t need a Docker account.</li><li>Keep Docker running whenever you use Sentinel.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>02</em><b>Open Terminal</b><span>Where you paste each command</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Mac: press ⌘ + Space, type Terminal and press Return.</li><li>Linux: open Terminal from your apps.</li><li>Paste one command at a time, press Return, and wait for it to finish before the next.</li></ul><div class="cl">Check Git is installed</div><div class="cb"><pre>git --version</pre><button class="cp" data-copy="git --version">Copy</button></div><ul class="sl"><li>On a Mac, if a box offers to install developer tools, click Install, then run the check again.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>03</em><b>Get Sentinel</b><span>Download it and make its settings file</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>This downloads Sentinel into a folder called Sentinel.</li><li>It also makes Sentinel’s settings file, .env, inside that folder.</li></ul><div class="cl">Download and set up</div><div class="cb"><pre>git clone https://github.com/barrygee/Sentinel.git
 cd Sentinel
 cp .env.example .env</pre><button class="cp" data-copy="git clone https://github.com/barrygee/Sentinel.git
