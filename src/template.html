@@ -1091,6 +1091,11 @@ a.nextj .nt span{font:700 12px/1 'Barlow Condensed','Barlow',sans-serif!importan
 #viewer .xtabs .row b,.sdrc .sdrcap span,.mtabs button,header.site nav a{font:600 11px/1.3 'Barlow',sans-serif!important;letter-spacing:.2em!important;text-transform:uppercase!important}
 footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-serif!important;letter-spacing:0!important}
 #viewer .xcap,#viewer #tag,.xdots-under+*{font-family:'Barlow',sans-serif}
+.xi-pts{list-style:none!important;margin:0!important;padding:0!important;display:grid!important;gap:16px!important}
+.xi-pts li{position:relative;padding:0 0 0 16px!important;display:flex!important;flex-direction:column;gap:3px;border:0!important;text-align:left}
+.xi-pts li::before{content:'';position:absolute;left:0;top:.5em;width:6px;height:6px;background:var(--ink)}
+.xi-pts b{font:700 15px/1.25 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.xi-pts span{font:400 15px/1.45 'Barlow',sans-serif;color:var(--mute)}
 </style>
 <script>document.documentElement.classList.add('js-title')</script>
 </head>
@@ -1440,7 +1445,7 @@ function show(i,v){
   renderDetail();paintDots();
 }
 const xinfo=document.getElementById('xinfo'),xcount=document.getElementById('xcount');
-function renderDetail(){const d=D[cur];xinfo.innerHTML=`<div class="xi-h"><h3>${d.name}</h3><p>${d.sub}</p></div><dl class="xi-src">${d.on&&d.on!==d.off?`<div><dt>${d.onLabel||'Online'}</dt><dd>${d.on}</dd></div><div><dt>Off-grid</dt><dd>${d.off}</dd></div>`:`<div><dt>Source</dt><dd>${d.off}</dd></div>`}</dl><ul class="xi-f">${(d.f||[]).map(t=>`<li>${t}</li>`).join('')}</ul>`;xcount.textContent=`${view+1} / ${d.shots.length}`}
+function renderDetail(){const d=D[cur];xinfo.innerHTML=`<div class="xi-h"><h3>${d.name}</h3><p>${d.sub}</p></div><ul class="xi-src xi-pts">${(d.on&&d.on!==d.off?[[d.onLabel||'Online',d.on],['Off-grid',d.off]]:[['Source',d.off]]).map(([k,v])=>`<li><b>${k}</b><span>${v}</span></li>`).join('')}</ul><ul class="xi-f">${(d.f||[]).map(t=>`<li>${t}</li>`).join('')}</ul>`;xcount.textContent=`${view+1} / ${d.shots.length}`}
 function step(n){const d=D[cur],k=view+n;if(k>=0&&k<d.shots.length)setView(k);else{const ni=(cur+(n>0?1:D.length-1))%D.length;show(ni,n>0?0:D[ni].shots.length-1)}}
 document.getElementById('xprev').onclick=()=>{stopAuto();step(-1)};document.getElementById('xnext').onclick=()=>{stopAuto();step(1)};
 {let sx=null,sy=0;screen.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});screen.addEventListener('touchend',e=>{if(sx==null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;sx=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){stopAuto();step(dx<0?1:-1)}},{passive:true})}
