@@ -1134,6 +1134,14 @@ footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-s
 .lbx button:hover{background:#262626}
 #install .st.open .sbi{padding-top:22px!important}
 #install .sbi>*:first-child{margin-top:0!important}
+footer.site .flogo{display:grid;width:max-content;position:relative;z-index:1;margin:clamp(40px,6vw,72px) 0 0;margin-left:var(--inkL,0px);color:var(--ink)}
+footer.site .flogo i{width:26px;height:26px;border:4px solid var(--ink);border-radius:50%;display:grid;place-items:center;box-sizing:border-box}
+footer.site .flogo i::after{content:'';width:8px;height:8px;border-radius:50%;background:#c8ff00}
+.lbx .lbf{position:relative;max-width:100%;line-height:0}
+.lbx .lbp,.lbx .lbn{top:50%!important;margin-top:-18px!important;width:36px!important;height:36px!important;background:#000!important}
+.lbx .lbp{left:calc(2.3% + 14px)!important}.lbx .lbn{right:calc(2.3% + 14px)!important;left:auto!important}
+.lbx .lbp:hover,.lbx .lbn:hover{background:#262626!important}
+footer.site .flogo+.mark{margin-top:26px!important}
 </style>
 <script>document.documentElement.classList.add('js-title')</script>
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1291,6 +1299,7 @@ SDR_MANAGER_LOCAL_NATIVE=1">Copy</button></div><h5 class="ssh">3. Mac only, once
       <div><h4>Run it</h4><ul><li><a href="#install">Set up</a></li><li><a href="#network">Connect</a></li><li><a href="https://github.com/barrygee/Sentinel/tree/main/docs" target="_blank" rel="noopener">Documentation</a></li></ul></div>
       <div><h4>Project</h4><ul><li><a href="https://github.com/barrygee/Sentinel" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/barrygee/Sentinel/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a></li><li><a href="https://github.com/barrygee/Sentinel/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a></li></ul></div>
     </div>
+    <a class="flogo" href="#top" aria-label="Back to top"><i></i></a>
     <div class="mark giant out" aria-hidden="true">Sentinel</div>
     <div class="fine"><span>© 2026 Barry Gee</span><span class="mono">github.com/barrygee/Sentinel</span></div>
   </div>
@@ -1501,7 +1510,7 @@ show(0,0);
 
 /* sections, Ares-timeline style */
 document.getElementById('decades').innerHTML=D.map((d,i)=>`<div class="dec"><div class="dh"><h3>${d.k}</h3><p>${d.sub}</p></div><div class="tl">${d.shots.slice(0,3).map((s,j)=>`<button class="ev" data-i="${i}" data-v="${j}" aria-label="${d.k}: ${s[1]}"><div class="th"><img src="${IMG[s[0]]}" alt=""></div><span>${s[1]}</span></button>`).join('')}</div></div>`).join('');
-document.getElementById('decades').addEventListener('click',e=>{const b=e.target.closest('.ev');if(!b)return;stopAuto();show(+b.dataset.i,+b.dataset.v);document.getElementById('explorer').scrollIntoView({behavior:'smooth'})});
+
 
 /* off-grid rows */
 const OG=[['Air','Aircraft · ADS-B','Your chosen ADS-B provider or selected remote SDR','Online feed','Your local SDR and Sentinel ADS-B decoder','SDR receiver + 1090 MHz antenna'],['Space','Satellites · SGP4','Not needed','Fresh TLEs','Stored TLEs','Loaded while online'],['Sea','Vessels · AIS','Your chosen AIS provider or selected remote SDR','Free key','Your local SDR and Sentinel AIS decoder','SDR receiver + marine VHF antenna'],['Land','Repeaters · APRS','Built-in data source or your selected remote SDR','Updated daily','Your local SDR and Sentinel APRS decoder','APRS always from your radio'],['SDR','Your radios','Your radios','Local or remote hosts','Your radios','No change'],['Maps','Base map','Online tiles','Streamed','Downloaded map tiles','Saved while online']];
@@ -2102,14 +2111,15 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
  g.style.setProperty('padding-left',Math.max(0,L-gl.left-offL)+'px','important');const pr=gl.right-R-offR;g.style.setProperty('padding-right',Math.max(0,isFinite(pr)?pr:(L-gl.left))+'px','important')};addEventListener('resize',al);addEventListener('load',al);document.fonts&&document.fonts.ready.then(al);setTimeout(al,400)}</script>
 <script>/* Maps lightbox: click a screenshot to open it large; arrows or ←/→ step through that section, Esc or a click outside closes */
 {const box=document.createElement('div');box.className='lbx';box.setAttribute('role','dialog');box.setAttribute('aria-modal','true');box.setAttribute('aria-label','Screenshot');
- box.innerHTML='<button class="lbc" aria-label="Close">×</button><button class="lbp" aria-label="Previous">‹</button><img alt=""><p></p><button class="lbn" aria-label="Next">›</button>';document.body.appendChild(box);
- const im=box.querySelector('img'),cap=box.querySelector('p');let list=[],i=0,last=null;
+ box.innerHTML='<button class="lbc" aria-label="Close">×</button><div class="lbf"><img alt=""><button class="lbp" aria-label="Previous"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\"><path d=\"M9 2 4 7l5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/></svg></button><button class="lbn" aria-label="Next"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\"><path d=\"m5 2 5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"/></svg></button></div><p></p>';document.body.appendChild(box);
+ const im=box.querySelector('img'),cap=box.querySelector('p');let list=[],i=0,last=null,sy=0;
  const show=()=>{const e=list[i];if(!e)return;const t=e.querySelector('img');im.src=t.src;im.alt=t.alt||'';const c=e.querySelector('span');cap.textContent=c?c.textContent:'';box.querySelector('.lbp').hidden=box.querySelector('.lbn').hidden=list.length<2};
- const open=e=>{const row=e.closest('.tl')||e.parentElement;list=[...row.querySelectorAll('.ev')].filter(x=>x.querySelector('.th img'));i=Math.max(0,list.indexOf(e));last=document.activeElement;show();box.classList.add('on');document.documentElement.style.overflow='hidden';box.querySelector('.lbc').focus()};
- const close=()=>{box.classList.remove('on');document.documentElement.style.overflow='';last&&last.focus&&last.focus()};
+ const open=e=>{const row=e.closest('.tl')||e.parentElement;list=[...row.querySelectorAll('.ev')].filter(x=>x.querySelector('.th img'));i=Math.max(0,list.indexOf(e));last=document.activeElement;show();sy=scrollY;box.classList.add('on');box.querySelector('.lbc').focus({preventScroll:true})};
+ const close=()=>{box.classList.remove('on');last&&last.focus&&last.focus({preventScroll:true});if(scrollY!==sy)scrollTo({top:sy,behavior:'instant'})};
  document.addEventListener('click',ev=>{const t=ev.target.closest('#sections .ev .th');if(t){ev.preventDefault();open(t.closest('.ev'))}});
  box.addEventListener('click',ev=>{if(ev.target===box||ev.target.closest('.lbc'))close();else if(ev.target.closest('.lbp')){i=(i-1+list.length)%list.length;show()}else if(ev.target.closest('.lbn')){i=(i+1)%list.length;show()}});
- addEventListener('keydown',ev=>{if(!box.classList.contains('on'))return;if(ev.key==='Escape')close();else if(ev.key==='ArrowLeft'){i=(i-1+list.length)%list.length;show()}else if(ev.key==='ArrowRight'){i=(i+1)%list.length;show()}});
+ box.addEventListener('wheel',e=>e.preventDefault(),{passive:false});box.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+ addEventListener('keydown',ev=>{if(!box.classList.contains('on'))return;if([' ','PageDown','PageUp','Home','End','ArrowUp','ArrowDown'].includes(ev.key))ev.preventDefault();if(ev.key==='Escape')close();else if(ev.key==='ArrowLeft'){i=(i-1+list.length)%list.length;show()}else if(ev.key==='ArrowRight'){i=(i+1)%list.length;show()}});
  document.querySelectorAll('#sections .ev .th').forEach(t=>{t.setAttribute('tabindex','0');t.setAttribute('role','button');t.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(t.closest('.ev'))}})})}</script>
 </body>
 </html>
