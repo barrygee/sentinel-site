@@ -173,16 +173,16 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
   const shortL=(t,v)=>v+((((t-v)%360)+540)%360)-180;
   const fwd=(t,v)=>{let d=((((t-v)%360)+360)%360);if(d>340)d-=360;return v+d};/* the globe only ever turns one way (eastward, like its spin) */
   const seaOnLand=(o,t)=>{if(!o.lc||t-o.lc>2000){o.lc=t;o.ol=isLand(o.lat,o.lon)||nearLand(o.lat,o.lon)&&isLand(o.lat,o.lon)}return o.ol};
-  const STATIC=()=>W()<900;let spinK=1;const camV={lat:0,lon:0,d:0,on:false};
+  const STATIC=()=>false/* every screen size turns the globe now */;let spinK=1;const camV={lat:0,lon:0,d:0,on:false};
   let hoverPause=false,ease=0,fOff=30,follow=null,cyNow=.98;const topRef=()=>(document.querySelector(W()<900?'.gl .gl-copy':'.gl .gl-h')||hero).getBoundingClientRect().bottom+(W()<900?30:0);const spaceD=()=>{const w=W(),h=H();if(w<900)return spaceDm;const t=Math.min(3,(w/h)*Math.tan(cam.fov*D2R/2));return Math.min(ZMAX,R/Math.sin(Math.atan(t))*1.45)};const spaceT=()=>{const sd=spaceD();return Math.max(0,Math.min(1,(view.d-sd)/(ZMAX-sd)))};let overG=false,spin=!reduce,drag=null,moved=0,cy=.66,cxB=.5,cxNow=.5;
   function size(){const w=hero.clientWidth,h=hero.clientHeight;renderer.setSize(w,h,false);tc.width=w*devicePixelRatio;tc.height=h*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
     const m=w<900;cxB=.5;cy=m?.97:.98;HOMEV.lat=HOME[0]-14;HOMEV.lon=HOME[1]+(m?0:2);cam.aspect=w/h;cam.fov=m?44:30;cam.updateProjectionMatrix();HOMEV.d=m?360:225;
     /* phones: size the globe to the screen width and sit its top just under the hero copy, so there is no empty band above it */
-    if(m){const gc=hero.querySelector('.gl-copy'),hb=hero.getBoundingClientRect();if(gc){const bot=gc.getBoundingClientRect().bottom-hb.top,rp=w*3.2,k=rp*2*Math.tan(cam.fov*D2R/2)/h;HOMEV.d=Math.max(132,Math.min(ZMAX0,R/Math.sin(Math.atan(k))));cy=Math.min(8,(bot*.35+rp)/h);
-      /* place the home marker midway down the visible globe */
-      {const ty=(bot+30+h)/2,c2=cam.clone(),pt=V(HOME[0],HOME[1],.02);const yAt=off=>{c2.position.copy(V(HOME[0]-off,HOMEV.lon,HOMEV.d-R));c2.up.set(0,1,0);c2.lookAt(0,0,0);c2.setViewOffset(w,h,0,h/2-cy*h,w,h);c2.updateMatrixWorld();const q=pt.clone().project(c2);return (-q.y*.5+.5)*h};
-       let lo=-30,hi=60;for(let i=0;i<30;i++){const md=(lo+hi)/2;if(yAt(md)>ty)lo=md;else hi=md}const off=(lo+hi)/2;HOMEV.lat=HOME[0]-off;if(!sel&&!follow&&!zoomed0()){goal.lat=HOMEV.lat;goal.lon=HOMEV.lon;view.lat=HOMEV.lat;view.lon=HOMEV.lon}}
-      const rs=w*.66,ks=rs*2*Math.tan(cam.fov*D2R/2)/h;spaceDm=Math.min(ZMAX0,R/Math.sin(Math.atan(ks)));cySp=Math.min(1.4,(bot+30+rs)/h)}}
+    /* narrow screens: a globe a little wider than the screen, its top just under the hero copy, still turning as on desktop */
+    if(m){cam.fov=30;cam.updateProjectionMatrix();const gc=hero.querySelector('.gl-copy'),hb=hero.getBoundingClientRect();if(gc){const bot=gc.getBoundingClientRect().bottom-hb.top,rp=w*(window.__mRp??.62),k=rp*2*Math.tan(cam.fov*D2R/2)/h;HOMEV.d=Math.max(142,Math.min(ZMAX0,R/Math.sin(Math.atan(k))));cy=Math.min(3,(bot+24+rp)/h);
+      {const ty=Math.min(h-60,bot+24+rp*.42),c2=cam.clone(),pt=V(HOME[0],HOME[1],.02);const yAt=off=>{c2.position.copy(V(HOME[0]-off,HOMEV.lon,HOMEV.d-R));c2.up.set(0,1,0);c2.lookAt(0,0,0);c2.setViewOffset(w,h,0,h/2-cy*h,w,h);c2.updateMatrixWorld();const q=pt.clone().project(c2);return (-q.y*.5+.5)*h};
+       let lo=-30,hi=60;for(let i=0;i<30;i++){const md=(lo+hi)/2;if(yAt(md)>ty)lo=md;else hi=md}const off=(lo+hi)/2;HOMEV.lat=HOME[0]-off;if(!sel&&!follow&&!zoomed0()){goal.lat=HOMEV.lat;view.lat=HOMEV.lat}}
+      const rs=w*.5,ks=rs*2*Math.tan(cam.fov*D2R/2)/h;spaceDm=Math.min(ZMAX0,R/Math.sin(Math.atan(ks)));cySp=Math.min(1.4,(bot+30+rs)/h)}}
     if(!sel&&!zoomed0())goal.d=HOMEV.d}
   let spaceDm=360,cySp=.97;const ZMAX0=620,zoomed0=()=>{try{return zoomed}catch(e){return false}};
   size();addEventListener('resize',size);view.d=HOMEV.d;cyNow=cy;setTimeout(size,250);setTimeout(size,1200);if(document.fonts)document.fonts.ready.then(()=>setTimeout(size,30));
