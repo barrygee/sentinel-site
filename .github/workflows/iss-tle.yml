@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 jobs:
   update:
@@ -40,3 +41,10 @@ jobs:
           git add iss-tle.json
           git commit -m "Update ISS orbit"
           git push
+
+      # a push made by this workflow doesn't start a Pages build on its own, so ask for one
+      - name: Redeploy the site
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build request failed; the next push will deploy it"
