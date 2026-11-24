@@ -1117,6 +1117,7 @@ footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-s
 /* accordion arrows as in the app: right when closed, down when open */
 #install .chev{transform:rotate(-45deg)!important;margin-top:0!important}
 #install .st.open .chev{transform:rotate(45deg)!important;margin-top:-4px!important}
+.glvig{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 75% 70% at 50% 55%,rgba(5,6,9,0) 55%,rgba(5,6,9,.5) 100%);box-shadow:inset 0 0 140px 30px rgba(5,6,9,.55)}
 </style>
 <script>document.documentElement.classList.add('js-title')</script>
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1139,6 +1140,7 @@ footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-s
   <section class="hero hero3d gl" id="hero">
     <canvas id="globe" aria-label="Interactive 3D globe: real satellite positions, aircraft and ships, lit by today's real sunlight. Drag to turn it, scroll or pinch to zoom, select anything to see its details."></canvas>
     <canvas id="gltrail" aria-hidden="true"></canvas>
+    <div class="glvig" aria-hidden="true"></div>
     <div id="gllabels"></div>
     <div class="glscrim"></div>
     <div class="wrap gl-in">
