@@ -1,9 +1,11 @@
 /* ---------- globe hero: the app's dark map on a globe, real satellites (SGP4), aircraft and ships, the app's day/night ---------- */
-(function(){
-  if(!window.THREE)return;
+(function glInit(tries){
+  tries=tries||0;if(!window.THREE)return;
   const hero=document.getElementById('hero'),cv=document.getElementById('globe'),tc=document.getElementById('gltrail'),LB=document.getElementById('gllabels'),panel=document.getElementById('glpanel'),statusEl=document.getElementById('glstatus');
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let renderer;try{renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true})}catch(e){cv.style.display='none';return}
+  let renderer=null;for(const o of [{antialias:true},{antialias:false},{antialias:false,powerPreference:'low-power'}]){try{renderer=new THREE.WebGLRenderer(Object.assign({canvas:cv},o));break}catch(e){}}
+  if(!renderer){if(tries<4)setTimeout(()=>glInit(tries+1),1200*(tries+1));else cv.style.display='none';return}
+  cv.style.display='';cv.addEventListener('webglcontextlost',e=>e.preventDefault(),false);
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.setClearColor(0x0d0f14,1);
   const ctx=tc.getContext('2d');let sel=null;
   const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,1,5000);
