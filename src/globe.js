@@ -389,7 +389,7 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
     const parse=(a,sc,poly)=>{const out=[];let cur=[],i=0;while(i<a.length){const n=(a[i]<<15)|a[i+1];i+=2;if(!n){if(poly){out.push(cur);cur=[]}continue}const r=new Float32Array(n*2);let x=0,y=0;for(let k=0;k<n;k++){x+=a[i++];y+=a[i++];r[k*2]=x/sc;r[k*2+1]=y/sc}if(poly)cur.push(r);else out.push([r])}return out};
     const bb=rs=>{let a=1e9,b=1e9,c=-1e9,d=-1e9;rs.forEach(r=>{for(let k=0;k<r.length;k+=2){a=Math.min(a,r[k]);c=Math.max(c,r[k]);b=Math.min(b,r[k+1]);d=Math.max(d,r[k+1])}});return [a,b,c,d]};
     const set=v=>({land:parse(dec(v.land),v.scale,true).map(p=>({p,b:bb(p)})),bor:parse(dec(v.bor),v.scale,false).map(p=>({p,b:bb(p)}))});
-    const G=set(VD.g),E=set(VD.e);
+    const G=set(VD.g),E=set(VD.e);window.__mapVec={E,G};
     /* rings that cross the date line are unwrapped so they don't fill a band right round the map; a ring that circles a pole is closed through that pole */
     const ringPath=(cx,r,X,Y)=>{const fixed=[r[0],r[1]];let off=0;for(let k=2;k<r.length;k+=2){let lo=r[k]+off;const d=lo-fixed[fixed.length-2];if(d>180){off-=360;lo-=360}else if(d<-180){off+=360;lo+=360}fixed.push(lo,r[k+1])}
       const span=fixed[fixed.length-2]-fixed[0];if(Math.abs(span)>300){const pl=fixed[fixed.length-1]<0?-90:90;fixed.push(fixed[fixed.length-2],pl,fixed[0],pl)}
