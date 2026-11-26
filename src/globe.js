@@ -234,11 +234,11 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
         const yAt=off=>{c2.position.copy(V(follow.lat-off,follow.lon,goal.d-R));c2.up.set(0,1,0);c2.lookAt(0,0,0);c2.setViewOffset(w,h,w/2-.5*w,h/2-(w<900?cySp:1)*h,w,h);c2.updateMatrixWorld();const q=pt.clone().project(c2);return (-q.y*.5+.5)*h};
         let lo=0,hi=75;for(let i=0;i<30;i++){const m=(lo+hi)/2;if(yAt(m)>ty)lo=m;else hi=m}fOff=(lo+hi)/2;goal.lat=Math.max(-80,Math.min(80,follow.lat-fOff));goal.lon=shortL(follow.lon,view.lon)}}else if(!window.__autoStep||STATIC()||wasSpace){const wasFar=wasSpace||(!window.__autoStep&&(zoomed||follow));follow=null;zoomed=false;if(sel)select(null);const keep=view.lon;Object.assign(goal,HOMEV);goal.lon=wasFar?(wasSpace?shortL(HOMEV.lon,view.lon):fwd(HOMEV.lon,view.lon)):keep;if(!wasFar){goal.lat=view.lat;ease=6}}});
   let trShow=null,trA=0,hovA=null,pmx=-1,pmy=-1;hero.addEventListener('pointermove',e=>{pmx=e.clientX;pmy=e.clientY},{passive:true});hero.addEventListener('pointerleave',()=>{pmx=-1});
-  const hoverTest=()=>{hovA=null;if(pmx<0)return;const el=document.elementFromPoint(pmx,pmy),p=el&&el.closest&&el.closest('#gllabels .mlp[data-k=air]');if(p)hovA=planes.find(x=>x.el===p)||null};
+  let hvAt=0,hvX=-9,hvY=-9;const hoverTest=()=>{if(drag){hovA=null;return}const tn=performance.now();if(pmx===hvX&&pmy===hvY&&tn-hvAt<250)return;hvAt=tn;hvX=pmx;hvY=pmy;hovA=null;if(pmx<0)return;const el=document.elementFromPoint(pmx,pmy),p=el&&el.closest&&el.closest('#gllabels .mlp[data-k=air]');if(p)hovA=planes.find(x=>x.el===p)||null};
   LB.addEventListener('click',e=>{const p=e.target.closest('.mlp');if(!p)return;const o=(p.dataset.k==='air'?planes:p.dataset.k==='land'?stations:ships).find(x=>x.el===p);if(o)select(o)});
 
   /* ---- projection and picking ---- */
-  const W=()=>hero.clientWidth,H=()=>hero.clientHeight;
+  const W=()=>(window.__gW??=hero.clientWidth),H=()=>(window.__gH??=hero.clientHeight);new ResizeObserver(()=>{window.__gW=hero.clientWidth;window.__gH=hero.clientHeight}).observe(hero);
   const v=new THREE.Vector3(),cd=new THREE.Vector3();
   function scr(p){v.copy(p).project(cam);return [(v.x*.5+.5)*W(),(-v.y*.5+.5)*H(),v.z]}
   function facing(p){cd.copy(p).sub(cam.position);const L=cd.length();cd.divideScalar(L);const b=cam.position.dot(cd),c=cam.position.lengthSq()-R*R,disc=b*b-c;if(disc<0)return true;const t1=-b-Math.sqrt(disc);return t1<0||t1>L-.6}
@@ -314,10 +314,11 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
     /* pills that have no room show only their glyph well, as the app drops to a bare mark */
     let titleBox=null;const heavy=a=>{const A=(a[2]-a[0])*(a[3]-a[1]);return boxes.some(b=>{const ix=Math.min(a[2],b[2])-Math.max(a[0],b[0]),iy=Math.min(a[3],b[3])-Math.max(a[1],b[1]);return ix>0&&iy>0&&ix*iy>A*.3})};const boxes=[],hit=(a)=>boxes.some(b=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1]);
     /* keep labels clear of the controls, the hero copy and the screen edges */
-    {const hr=hero.getBoundingClientRect();document.querySelectorAll('.gl-ui,.gl-copy .acts,.gl-copy .tick,.gl-top .spec,.nextj.onhero').forEach(el=>{const r=el.getBoundingClientRect();if(r.width)boxes.push([r.left-hr.left-30,r.top-hr.top-22,r.right-hr.left+30,r.bottom-hr.top+22])});
+    {const tN=performance.now();if(!window.__uiB||tN-window.__uiB.t>400){const saved=boxes.length;{const hr=hero.getBoundingClientRect();document.querySelectorAll('.gl-ui,.gl-copy .acts,.gl-copy .tick,.gl-top .spec,.nextj.onhero').forEach(el=>{const r=el.getBoundingClientRect();if(r.width)boxes.push([r.left-hr.left-30,r.top-hr.top-22,r.right-hr.left+30,r.bottom-hr.top+22])});
       /* nothing sits behind the SENTINEL title (or the logo/GitHub bar), at any size */
       const t=document.querySelector('.gl .gl-h');if(t){const rg=document.createRange();rg.selectNodeContents(t);const r=rg.getBoundingClientRect(),rb=t.getBoundingClientRect();/* the line box (not the font's descender space) is the title's ink height */titleBox=[r.left-hr.left-16,rb.top-hr.top-10,r.right-hr.left+16,rb.bottom-hr.top+16];boxes.push(titleBox)}
       const hb=document.querySelector('.gl .h3bar');if(hb){const r=hb.getBoundingClientRect();boxes.push([r.left-hr.left,r.top-hr.top-6,r.right-hr.left,r.bottom-hr.top+6])}}
+    window.__uiB={t:tN,b:boxes.slice(saved),tb:titleBox}}else{boxes.push(...window.__uiB.b);titleBox=window.__uiB.tb}}
     const vis2=[];
     const camN=cam.position.clone().normalize();let shown={air:0,sea:0,land:0};const nowP=performance.now();const pills=(list,on,build)=>list.forEach(o=>{const p=objPos(o);const onNow=((on&&!(o.showAt&&nowP<o.showAt))||(!on&&o.hideAt&&nowP<o.hideAt))&&!(o.kind==='sea'&&seaOnLand(o,nowP));/* a vessel is never shown over land */if(!onNow||!facing(p)||(o!==sel&&p.clone().normalize().dot(camN)<(o.vis?.24:.3))){o.el.classList.add('off');return}const [x,y,b]=screenBearing(o);if(x<-200||x>w+200||y<(window.GL_TOP||-40)||y>h+40){o.el.classList.add('off');return}
       if(o!==sel&&!o.vis&&!o.emerg&&++shown[o.kind]>(o.kind==='air'?MAX_AIR:o.kind==='sea'?MAX_SEA:99)){o.el.classList.add('off');return}
