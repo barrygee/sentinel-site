@@ -1627,8 +1627,7 @@ const [L,Rr]=ink(h),W=Rr-L,ps=getComputedStyle(wr),wl=wr.getBoundingClientRect()
    const live=[...box.children].filter(x=>!x.classList.contains('go'));
    if(live.length>3)retire(live[live.length-1])}
  /* switch to another set: clear the current lines, then roll the new set in */
- window.__heroPoints=k=>{if(k===key||!box)return;key=k;P=get(k);i=0;clearInterval(tm);[...box.children].filter(x=>!x.classList.contains('go')).forEach(retire);
-   setTimeout(()=>{add();setTimeout(add,260);setTimeout(add,520);tm=setInterval(add,2600)},450)};
+ window.__heroPoints=k=>{if(k===key||!box)return;key=k;P=get(k);i=0;clearInterval(tm);add();tm=setInterval(add,2600)};
  const gl=document.getElementById('gllayers');if(gl)gl.addEventListener('click',e=>{const b=e.target.closest('button[data-l]');if(b)window.__heroPoints(b.dataset.l)});
  add();tm=setInterval(add,2600)}
 /* top bar: mark the section currently in view */
