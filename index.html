@@ -1636,8 +1636,8 @@ const [L,Rr]=ink(h),W=Rr-L,ps=getComputedStyle(wr),wl=wr.getBoundingClientRect()
 {const HP=window.HERO_POINTS||{},get=k=>(Array.isArray(HP)?HP:(HP[k]||HP.home||[])).filter(Boolean);let P=get('home'),key='home';
  const box=document.querySelector('.tick');let i=0,tm=null;
  function retire(it){it.classList.add('go');it.querySelector('.tkp').classList.remove('on');setTimeout(()=>it.classList.add('gone'),550);setTimeout(()=>it.remove(),1100)}
- function add(){if(!box||!P.length)return;const it=document.createElement('div');it.className='tki';it.innerHTML='<span class="tkp"><span class="tkt"></span></span>';it.querySelector('.tkt').textContent=P[i];i=(i+1)%P.length;box.prepend(it);
-   requestAnimationFrame(()=>requestAnimationFrame(()=>it.querySelector('.tkp').classList.add('on')));
+ function add(){if(!box||!P.length)return;const it=document.createElement('div');it.className='tki gone';it.innerHTML='<span class="tkp"><span class="tkt"></span></span>';it.querySelector('.tkt').textContent=P[i];i=(i+1)%P.length;box.prepend(it);
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{it.classList.remove('gone');setTimeout(()=>it.querySelector('.tkp').classList.add('on'),380)}));
    const live=[...box.children].filter(x=>!x.classList.contains('go'));
    if(live.length>3)retire(live[live.length-1])}
  /* switch to another set: clear the current lines, then roll the new set in */
