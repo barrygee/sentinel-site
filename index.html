@@ -1636,12 +1636,14 @@ const [L,Rr]=ink(h),W=Rr-L,ps=getComputedStyle(wr),wl=wr.getBoundingClientRect()
 {const HP=window.HERO_POINTS||{},get=k=>(Array.isArray(HP)?HP:(HP[k]||HP.home||[])).filter(Boolean);let P=get('home'),key='home';
  const box=document.querySelector('.tick');let i=0,tm=null;
  function retire(it){it.classList.add('go');it.querySelector('.tkp').classList.remove('on');setTimeout(()=>it.classList.add('gone'),550);setTimeout(()=>it.remove(),1100)}
- function add(){if(!box||!P.length)return;const it=document.createElement('div');it.className='tki gone';it.innerHTML='<span class="tkp"><span class="tkt"></span></span>';it.querySelector('.tkt').textContent=P[i];i=(i+1)%P.length;box.prepend(it);
-   requestAnimationFrame(()=>requestAnimationFrame(()=>{it.classList.remove('gone');setTimeout(()=>it.querySelector('.tkp').classList.add('on'),380)}));
-   const live=[...box.children].filter(x=>!x.classList.contains('go'));
-   if(live.length>3)retire(live[live.length-1])}
- /* switch to another set: clear the current lines, then roll the new set in */
- window.__heroPoints=k=>{if(k===key||!box)return;key=k;P=get(k);i=0;clearInterval(tm);add();tm=setInterval(add,2600)};
+ function add(){if(!box||!P.length)return;const text=P[i];i=(i+1)%P.length;
+   /* one beat: the bottom label wipes out, then the gap at the top opens while the bottom row closes (same 0.5s ease, so the rows glide down together), then the new label wipes in */
+   const live=[...box.children].filter(x=>!x.classList.contains('go')),old=live.length>=3?live[live.length-1]:null;
+   if(old){old.classList.add('go');old.querySelector('.tkp').classList.remove('on')}
+   setTimeout(()=>{const it=document.createElement('div');it.className='tki gone';it.innerHTML='<span class="tkp"><span class="tkt"></span></span>';it.querySelector('.tkt').textContent=text;box.prepend(it);
+     void it.offsetHeight;/* commit the collapsed state so the height change animates */it.classList.remove('gone');if(old)old.classList.add('gone');setTimeout(()=>it.querySelector('.tkp').classList.add('on'),500);if(old)setTimeout(()=>old.remove(),600)},old?560:0)}
+ /* switch to another set: the ticker keeps its rhythm, the next point just comes from the new set */
+ window.__heroPoints=k=>{if(k===key||!box)return;key=k;P=get(k);i=0};
  const gl=document.getElementById('gllayers');if(gl)gl.addEventListener('click',e=>{const b=e.target.closest('button[data-l]');if(b)window.__heroPoints(b.dataset.l)});
  add();tm=setInterval(add,2600)}
 /* top bar: mark the section currently in view */
