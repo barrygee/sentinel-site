@@ -1232,6 +1232,15 @@ html.crlock{overflow:hidden}
 .ctlab.below{transform:translate(-50%,10px)}
 @media (max-width:600px){.ctlab{font-size:10.5px;min-height:22px}.ctlab .cw{width:20px}.ctlab small{font-size:9px}.ctlab .ct{font-size:9.5px;padding:0 6px}}
 .ctlabels.narrow .ctlab small{display:none}
+.ctwhy{margin-top:clamp(28px,4vw,52px);padding-top:clamp(20px,2.5vw,30px);border-top:1px solid rgba(38,38,38,.18)}
+.ctwhy h3{margin:0 0 18px;font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.ctwhy ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2.2vw,32px)}
+.ctwhy li{position:relative;padding-top:16px}
+.ctwhy li::before{content:'';position:absolute;left:0;top:0;width:8px;height:8px;background:var(--ink)}
+.ctwhy b{display:block;font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.ctwhy p{margin:8px 0 0;font:400 14.5px/1.5 'Barlow',sans-serif;color:var(--mute)}
+@media (max-width:1000px){.ctwhy ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.ctwhy ul{grid-template-columns:1fr}}
 .ctsteps{padding:clamp(4px,1vw,12px) 0}
 .ctlist li::before{color:var(--mute)}
 .ctlist li p{color:var(--mute)}
@@ -1392,13 +1401,21 @@ SDR_MANAGER_LOCAL_NATIVE=1">Copy</button></div><h5 class="ssh">3. Mac only, once
       </div>
       <div class="ctut" id="ctut">
         <div class="ctabs" role="tablist" aria-label="Connection tutorials">
-          <button type="button" role="tab" aria-selected="true" data-m="host">Connect a remote Sentinel</button>
+          <button type="button" role="tab" aria-selected="true" data-m="peer">Link remote Sentinels</button>
+          <button type="button" role="tab" aria-selected="false" data-m="host">Add a Pi by the antenna</button>
           <button type="button" role="tab" aria-selected="false" data-m="tcp">Connect an rtl_tcp stream</button>
         </div>
         <div class="ctbody">
           <div class="ctstage"><canvas aria-hidden="true"></canvas><div class="ctlabels" aria-hidden="true"></div></div>
           <div class="ctsteps">
-            <ol class="ctlist" data-m="host">
+            <ol class="ctlist" data-m="peer">
+              <li><b>Run Sentinel at each site</b><p>Full Sentinel on each computer, each with its own antennas: home, a hilltop, the coast, a friend's house. Under App Settings give each a <em>Machine Name</em> and <em>Location</em>, so the others name it and place it on their maps.</p></li>
+              <li><b>Set a password and choose what to share</b><p>On each: a <em>Console Password</em> under App Settings › This machine. Make a dongle <em>Public</em> to share it, or <em>Private</em> and list the Sentinels you trust under <em>Private Access</em>.</p></li>
+              <li><b>Add each other as Sentinel hosts</b><p>Settings › SDR › Devices › <em>+ Add a new Sentinel host</em>: the other site's IP address, port <code>8000</code> and its console password. Do it on both sides to share both ways.</p></li>
+              <li><b>Check the fingerprint, then trust it</b><p>Compare the fingerprint shown with the other Sentinel's Certificate card (App Settings › Security). If they match, <em>Trust and add</em>. The link is now encrypted.</p></li>
+              <li><b>One picture from every site</b><p>Their dongles are radios in your SDR panel and sources for Air, Land and Sea. Each site shows on every map with its status, and works as a range-ring centre or overhead-alert place.</p></li>
+            </ol>
+            <ol class="ctlist" data-m="host" hidden>
               <li><b>Run SDR Manager on each remote computer</b><p>On each computer by an antenna (a Raspberry Pi is ideal), follow <a href="#install">Set up SDR Manager only</a> and plug its dongles in.</p></li>
               <li><b>Set a password and start the streams</b><p>Open each remote's page at <code>http://&lt;remote&gt;:8080</code>. Set a <em>Console Password</em> under App Settings › This machine. On each dongle: set <em>Visibility: Public</em>, switch its stream on and <em>Apply changes</em>.</p></li>
               <li><b>Add each as a Sentinel host</b><p>On your Sentinel: Settings › SDR › Devices › <em>+ Add a new Sentinel host</em>. Enter its IP address, port <code>8000</code> and its console password, then <em>Add</em>. Repeat for each remote.</p></li>
@@ -1412,6 +1429,16 @@ SDR_MANAGER_LOCAL_NATIVE=1">Copy</button></div><h5 class="ssh">3. Mac only, once
             </ol>
             <div class="ctnav"><button type="button" class="ctprev" aria-label="Previous step"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2 4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button><span class="ctcount" aria-live="polite">1 / 5</span><button type="button" class="ctnext" aria-label="Next step"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="m5 2 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button></div>
           </div>
+        </div>
+        <div class="ctwhy">
+          <h3>Why link Sentinels</h3>
+          <ul>
+            <li><b>Hear further</b><p>Every site's antennas add range: aircraft, ships and APRS from beyond your own horizon.</p></li>
+            <li><b>Best antenna for the job</b><p>ADS-B from the hilltop, AIS from the coast, APRS from town, all decoding into one Sentinel.</p></li>
+            <li><b>No single point of failure</b><p>Each Sentinel runs on its own. If a link drops, every site keeps tracking, and picks up again when it's back.</p></li>
+            <li><b>No internet needed</b><p>Links run over your own network or radio LAN. Use the internet only if you choose to.</p></li>
+            <li><b>Share with people you trust</b><p>Password-protected, encrypted and fingerprint-checked, with Private Access for named Sentinels only.</p></li>
+          </ul>
         </div>
       </div>
       <a class="nextj" href="#top" aria-label="Back to top: Home"><svg class="njlogo" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><polygon points="6,1 10,11 6,8.5 2,11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="nt"><svg class="njico" width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.6" fill="none" stroke="currentColor" stroke-width="2.3"/><circle cx="10" cy="10" r="3" fill="currentColor"/></svg><span>Home</span></span></a>
@@ -2248,11 +2275,17 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
 <script>/* Connect tutorial: an isometric three.js scene in the header's look (dark, black label pills, lime accents) that follows the steps */
 (function(){const root=document.getElementById('ctut');if(!root)return;
  const tabs=[...root.querySelectorAll('.ctabs button')],lists=[...root.querySelectorAll('.ctlist')],prev=root.querySelector('.ctprev'),next=root.querySelector('.ctnext'),count=root.querySelector('.ctcount');
- let mode='host',step=0;const items=()=>[...root.querySelector(`.ctlist[data-m="${mode}"]`).children];
+ let mode='peer',step=0;const PEERN=['HILLTOP','FRIEND','COAST'];const items=()=>[...root.querySelector(`.ctlist[data-m="${mode}"]`).children];
  /* three remote receivers, each feeding a different section */
  const REM=[{sec:'AIR',what:'ADS-B · 1090 MHz',pos:[-1.2,-1.9]},{sec:'LAND',what:'APRS · 144.800',pos:[1.7,-2.8]},{sec:'SEA',what:'AIS · 162 MHz',pos:[4.4,-3.5]}];
  /* per step: lit = which side to act on; link 0 none, 1 adding (dashed), 2 working; lock; waves; flow */
- const SCN={host:[
+ const SCN={peer:[
+   {lit:'remote',link:0,lock:0,waves:1,flow:0,main:'SENTINEL',mainSub:'Home',remSub:'Name · location'},
+   {lit:'remote',link:0,lock:0,waves:1,flow:0,main:'SENTINEL',mainSub:'Password · sharing',remSub:'Password · sharing'},
+   {lit:'main',link:1,lock:0,waves:1,flow:0,main:'ADD SENTINEL HOSTS',mainSub:'Both ways · port 8000',remSub:'Adding you too'},
+   {lit:'link',link:2,lock:1,waves:1,flow:0,main:'TRUST AND ADD',mainSub:'Fingerprints match',remSub:'Certificate'},
+   {lit:'main',link:2,lock:1,waves:1,flow:1,main:'ONE PICTURE',mainSub:'Every site on your map',remSub:''}],
+  host:[
    {lit:'remote',link:0,lock:0,waves:0,flow:0,main:'SENTINEL',rem:'SDR MANAGER',remSub:'Install'},
    {lit:'remote',link:0,lock:0,waves:1,flow:0,main:'SENTINEL',rem:'SDR MANAGER',remSub:'Password · streaming'},
    {lit:'main',link:1,lock:0,waves:1,flow:0,main:'ADD SENTINEL HOSTS',mainSub:'IP · port 8000 · password',rem:'SDR MANAGER',remSub:'Streaming'},
@@ -2262,7 +2295,7 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
    {lit:'remote',link:0,lock:0,waves:1,flow:0,main:'SENTINEL',rem:'RTL_TCP',remSub:'Running'},
    {lit:'main',link:1,lock:0,waves:1,flow:0,main:'ADD REMOTE SDRS',mainSub:'Name · IP · port',rem:'RTL_TCP',remSub:'Running'},
    {lit:'main',link:2,lock:0,waves:1,flow:1,main:'SDR · CONNECTED',mainSub:'Pick any in the radio panel',rem:'RTL_TCP',remSub:'One client each'}]};
- let target=SCN.host[0];
+ let target=SCN.peer[0];
  function setUI(){const its=items();step=Math.max(0,Math.min(its.length-1,step));its.forEach((li,i)=>li.classList.toggle('on',i===step));prev.disabled=step===0;next.disabled=step===its.length-1;count.textContent=(step+1)+' / '+its.length;target=SCN[mode][step];applyLabels()}
  tabs.forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.m;tabs.forEach(t=>t.setAttribute('aria-selected',t===b?'true':'false'));lists.forEach(l=>l.hidden=l.dataset.m!==mode);step=0;setUI()}));
  lists.forEach(l=>l.addEventListener('click',e=>{const li=e.target.closest('li');if(!li||e.target.closest('a'))return;step=[...l.children].indexOf(li);setUI()}));
@@ -2272,8 +2305,8 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
  const pill=(name,tag,sub)=>`<span class="cw"><i></i></span><span class="cn">${name}${sub?'<small>'+sub+'</small>':''}</span>`+(tag?`<span class="ct">${tag}</span>`:'');
  const LM=lab(),LR=REM.map(()=>lab()),LK=lab('hide');
  function applyLabels(){const s=target;LM.innerHTML=pill(s.main,'YOU',s.mainSub);LM.classList.toggle('on',s.lit==='main');
-  REM.forEach((r,i)=>{LR[i].innerHTML=mode==='host'?pill(r.sec,':8000',s.flow?r.what:s.remSub):pill('RTL-SDR '+(i+1),':'+(1234+i),s.remSub);LR[i].classList.toggle('on',s.lit==='remote')});
-  const tag=mode==='host'?(s.lock?['HTTPS','ENCRYPTED']:null):(s.flow?['NO PASSWORD','TRUSTED NETWORKS']:null);LK.innerHTML=tag?pill(tag[0],tag[1]):'';LK.classList.toggle('hide',!tag);LK.classList.toggle('on',s.lit==='link')}
+  REM.forEach((r,i)=>{LR[i].innerHTML=mode==='peer'?pill(PEERN[i],'SENTINEL',s.flow?r.sec+' · '+r.what:s.remSub):mode==='host'?pill(r.sec,':8000',s.flow?r.what:s.remSub):pill('RTL-SDR '+(i+1),':'+(1234+i),s.remSub);LR[i].classList.toggle('on',s.lit==='remote')});
+  const tag=mode!=='tcp'?(s.lock?['HTTPS','ENCRYPTED']:null):(s.flow?['NO PASSWORD','TRUSTED NETWORKS']:null);LK.innerHTML=tag?pill(tag[0],tag[1]):'';LK.classList.toggle('hide',!tag);LK.classList.toggle('on',s.lit==='link')}
  setUI();
  const T=window.THREE,cv=root.querySelector('.ctstage canvas'),stage=root.querySelector('.ctstage');if(!T||!cv)return;
  let R;try{R=new T.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){return}
@@ -2318,6 +2351,8 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
  const scrC=document.createElement('canvas');scrC.width=512;scrC.height=320;const sx=scrC.getContext('2d'),scrTex=new T.CanvasTexture(scrC);
  const screen=new T.Mesh(new T.PlaneGeometry(2.3,1.42),new T.MeshBasicMaterial({map:scrTex}));screen.position.set(0,.8,.052);lid.add(screen);
  rbox(.55,.42,.55,.12,0xe6e6e4,-1.55,.21,.5,main,{metal:.35,rough:.45});{const led=new T.Mesh(new T.BoxGeometry(.05,.05,.02),new T.MeshBasicMaterial({color:LIME}));led.position.set(-1.55,.3,.785);main.add(led)}
+ const miniC=document.createElement('canvas');miniC.width=176;miniC.height=104;{const c=miniC.getContext('2d');c.fillStyle='#14171e';c.fillRect(0,0,176,104);c.fillStyle='#000';c.fillRect(0,0,176,14);c.fillStyle='#c8ff00';c.beginPath();c.arc(9,7,3,0,7);c.fill();c.strokeStyle='rgba(255,255,255,.18)';c.lineWidth=1;for(let k=0;k<3;k++){c.beginPath();c.arc(88,60,12+k*13,0,7);c.stroke()}c.fillStyle='rgba(255,255,255,.75)';[[60,40],[110,50],[96,80],[70,72],[124,74]].forEach(([x,y])=>c.fillRect(x,y,4,4))}
+ const miniTex=new T.CanvasTexture(miniC);
  /* the remotes: a board, a dongle with a light, an antenna on each pad */
  const remotes=SITES.map((p,i)=>{const g=new T.Group();g.position.set(p.x,p.top,p.z);scene.add(g);
   shadow(1.8,1.3,.3,.005,.3,g);rbox(1.25,.32,.9,.16,0xe6e6e4,.2,.16,.2,g,{metal:.35,rough:.45});
@@ -2328,7 +2363,11 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
   {const b=new T.Mesh(new T.BoxGeometry(.34,.08,.34),new T.MeshLambertMaterial({color:0xdedede}));b.position.set(-.6,.04,-.4);g.add(b)}const mast=new T.Mesh(new T.BoxGeometry(.04,1.5,.04),new T.MeshLambertMaterial({color:GREY}));mast.position.set(-.6,.75,-.4);g.add(mast);
   const tip=new T.Mesh(new T.BoxGeometry(.12,.12,.12),new T.MeshBasicMaterial({color:0x6a6a68}));tip.position.set(-.6,1.52,-.4);g.add(tip);
   const waves=[0,1,2].map(()=>{const w=new T.Mesh(new T.RingGeometry(.16,.2,40),new T.MeshBasicMaterial({color:LIME,transparent:true,opacity:0,side:T.DoubleSide}));w.position.copy(tip.position);w.rotation.x=-Math.PI/2;g.add(w);return w});
-  return {g,p,led,waves,tip}});
+  const mon=new T.Group();mon.position.set(.35,.32,-.05);g.add(mon);
+  rbox(.36,.03,.24,.1,0xe2e2e0,0,.015,0,mon,{});const nk=new T.Mesh(new T.BoxGeometry(.06,.34,.06),new T.MeshLambertMaterial({color:0xdedede}));nk.position.set(0,.19,-.04);mon.add(nk);
+  const lidm=new T.Group();lidm.position.set(0,.36,-.04);lidm.rotation.x=-.08;mon.add(lidm);rbox(1.0,.64,.06,.1,0xe2e2e0,0,.32,0,lidm,{});
+  const ms=new T.Mesh(new T.PlaneGeometry(.88,.52),new T.MeshBasicMaterial({map:miniTex}));ms.position.set(0,.32,.032);lidm.add(ms);mon.visible=false;mon.scale.setScalar(.001);
+  return {g,p,led,waves,tip,mon}});
  /* pins: a stem up from each site to a node, where the label sits (the reference's pins, in the header's label style) */
  const pins=[];const pin=(x,z,h)=>{const stem=new T.Mesh(new T.CylinderGeometry(.012,.012,h,6),new T.MeshBasicMaterial({color:0x8a8a88}));stem.position.set(x,h/2,z);scene.add(stem);const node=new T.Mesh(new T.BoxGeometry(.12,.12,.12),new T.MeshBasicMaterial({color:0x8a8a88}));node.position.set(x,h,z);scene.add(node);const o={stem,node,top:new T.Vector3(x,h+.12,z),base:h};pins.push(o);return o};
  const PM=pin(P_MAIN.x-1.6,P_MAIN.z-1.1,3.0),PR=SITES.map((p,i)=>pin(p.x+.2,p.z-.6,[3.0,3.6,.01][i]));
@@ -2353,7 +2392,7 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
  function drawScreen(t,s){const x=sx;x.fillStyle='#14171e';x.fillRect(0,0,512,320);x.fillStyle='#000';x.fillRect(0,0,512,30);x.fillStyle='#c8ff00';x.beginPath();x.arc(18,15,6,0,7);x.fill();x.fillStyle='#fff';x.font='600 15px Barlow Condensed, Barlow, sans-serif';x.fillText('SENTINEL',32,20);
   ['AIR','SPACE','SEA','LAND','SDR'].forEach((n,i)=>{x.fillStyle='rgba(255,255,255,.55)';x.font='500 12px Barlow Condensed, Barlow, sans-serif';x.fillText(n,260+i*48,20)});
   REM.forEach((r,i)=>{const y=48+i*88,on=s.link>=2,live=s.flow;x.fillStyle=on?'#1d222c':'#181b23';x.fillRect(16,y,480,76);x.fillStyle=live?'#c8ff00':on?'#fff':'rgba(255,255,255,.3)';x.beginPath();x.arc(34,y+20,5,0,7);x.fill();
-   x.fillStyle=on?'#fff':'rgba(255,255,255,.45)';x.font='600 16px Barlow Condensed, Barlow, sans-serif';x.fillText(mode==='host'?r.sec:'RTL-SDR '+(i+1),48,y+26);x.fillStyle='rgba(255,255,255,.5)';x.font='500 12px Barlow Condensed, Barlow, sans-serif';x.fillText(s.link===0?'—':s.link===1?'ADDING …':(mode==='host'?'SENTINEL HOST · ENCRYPTED':'RTL_TCP · CONNECTED'),48,y+48);
+   x.fillStyle=on?'#fff':'rgba(255,255,255,.45)';x.font='600 16px Barlow Condensed, Barlow, sans-serif';x.fillText(mode==='tcp'?'RTL-SDR '+(i+1):mode==='peer'?r.sec+' · '+PEERN[i]:r.sec,48,y+26);x.fillStyle='rgba(255,255,255,.5)';x.font='500 12px Barlow Condensed, Barlow, sans-serif';x.fillText(s.link===0?'—':s.link===1?'ADDING …':(mode==='tcp'?'RTL_TCP · CONNECTED':mode==='peer'?'REMOTE SENTINEL · ENCRYPTED':'SENTINEL HOST · ENCRYPTED'),48,y+48);
    if(live){wfx.drawImage(wf,0,0,150,60,0,2,150,60);for(let k=0;k<150;k+=3){const v=Math.max(0,Math.random()*.4+(Math.abs(k-75+Math.sin(t*.001+i)*30)<8?.6:0));wfx.fillStyle=`hsl(${80-v*60},100%,${8+v*45}%)`;wfx.fillRect(k,0,3,2)}x.drawImage(wf,330,y+8,150,60)}});
   scrTex.needsUpdate=true}
  const CEN=new T.Vector3(.4,0,-.2);
@@ -2372,13 +2411,14 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
   pins.forEach((p,i)=>{const b=Math.sin(t*.0016+i*1.3)*.05;p.node.position.y=p.base+b;p.top.y=p.base+.12+b;p.node.rotation.y=t*.001});
   PM.node.material.color.copy(cW).lerp(cLime,cur.litM);PR.forEach(p=>p.node.material.color.copy(cW).lerp(cLime,cur.litR));
   remotes.forEach((r,i)=>{r.waves.forEach((w,j)=>{const q=((t*.0006)+j/3+i*.2)%1;w.scale.setScalar(1+q*3.2);w.material.opacity=(1-q)*.55*cur.waves});r.led.material.color.setHex(cur.waves>.5?LIME:0xb5b5b3);r.tip.material.color.setHex(cur.waves>.5?LIME:0x6a6a68)});
+  remotes.forEach(r=>{const on=mode==='peer';if(on)r.mon.visible=true;const k=r.mon.scale.x+((on?1:0)-r.mon.scale.x)*.12;r.mon.scale.setScalar(Math.max(.001,k));if(!on&&k<.01)r.mon.visible=false});
   hubRing.material.color.copy(new T.Color(0x8a8a88)).lerp(cLime,Math.min(1,cur.lock+cur.flow*.5));scene.children.forEach(o=>{if(o.userData.hubLed!==undefined)o.material.color.setHex(cur.flow>.5&&((t*.008+o.userData.hubLed)%4<1.2)?LIME:0xb5b5b3)});
   /* routes: each lights a beat after the one before; while being added a light runs along them, once working they glow and carry packets */
   routes.forEach((rt,i)=>{const L=Math.max(0,Math.min(2,cur.link*1.25-i*.25)),F=Math.max(0,Math.min(1,cur.flow*1.4-i*.2));
    const adding=Math.min(1,L)*(1-Math.max(0,L-1)),head=((t*.0005)+i*.3)%1;
    rt.segs.forEach(sg=>{const mid=(sg.s+sg.L/2)/rt.len;const near=1-Math.min(1,Math.abs(mid-head)*4);sg.g.material.opacity=Math.max(Math.max(0,L-1)*.85,adding*near*.9)});
-   pk[i].forEach((m,j)=>{const u=((t*.00022)+j/3+i*.17)%1;m.position.copy(rt.at(u));m.position.y=.06;m.material.opacity=F})});
-  {const L=Math.max(0,Math.min(2,cur.link*1.25-.5)),F=cur.flow;trunk.segs.forEach(sg=>{sg.g.material.opacity=Math.max(0,L-1)*.85+Math.min(1,L)*(1-Math.max(0,L-1))*.35});pkT.forEach((m,j)=>{const u=((t*.00026)+j/4)%1;m.position.copy(trunk.at(u));m.position.y=.06;m.material.opacity=F})}
+   pk[i].forEach((m,j)=>{let u=((t*.00022)+j/3+i*.17)%1;if(mode==='peer'&&j===1)u=1-u;m.position.copy(rt.at(u));m.position.y=.06;m.material.opacity=F})});
+  {const L=Math.max(0,Math.min(2,cur.link*1.25-.5)),F=cur.flow;trunk.segs.forEach(sg=>{sg.g.material.opacity=Math.max(0,L-1)*.85+Math.min(1,L)*(1-Math.max(0,L-1))*.35});pkT.forEach((m,j)=>{let u=((t*.00026)+j/4)%1;if(mode==='peer'&&j%2)u=1-u;m.position.copy(trunk.at(u));m.position.y=.06;m.material.opacity=F})}
   lock.scale.setScalar(Math.max(.001,cur.lock));lock.rotation.y=t*.0009;lock.position.y=.95+Math.sin(t*.002)*.04;
   if(t-lastScr>110){drawScreen(t,s);lastScr=t}
   R.render(scene,cam);
