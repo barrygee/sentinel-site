@@ -558,22 +558,38 @@ header.site .applogo svg{display:block;height:26px;width:142px}
 footer.site .ll{margin:0}footer.site .ll span{font-size:14px;padding:5px 10px}
 
 /* deploy: the app's dark panel style (canvas #15171d, Barlow labels, lime accent) */
-#install .steps{gap:1px;background:#15171d;border-radius:0;padding:6px 0}
-#install .steps li{background:transparent;border-radius:0;padding:13px 26px 13px 28px;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;transition:background .12s}
-#install .steps li:hover{background:rgba(255,255,255,.06)}
-#install .steps em{display:block;font-style:normal;font-size:9px;font-weight:700;letter-spacing:.14em;color:#c8ff00;opacity:.75;margin-bottom:2px}
-#install .steps b{font:600 13px 'Barlow',sans-serif;letter-spacing:.1em;color:#fff;margin:0}
-#install .steps span{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);line-height:1.5}
-#install .code{background:#15171d;border-radius:0}
-#install .code .bar{background:#000;color:rgba(255,255,255,.45);font:600 10px 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:0 0 0 16px;height:40px}
-#install .code .ib{height:40px;padding:0 16px;background:none;border:0;border-radius:0;color:rgba(255,255,255,.45);font:600 10px 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
-#install .code .ib:hover{color:#c8ff00;background:rgba(255,255,255,.04)}
-#install .code pre{color:rgba(255,255,255,.85);font-size:12.5px}
-#install .code pre .k{color:#fff}#install .code pre .c{color:rgba(255,255,255,.3)}#install .code pre .n{color:#c8ff00}
-#install .code .env{gap:1px}
-#install .code .env div{background:rgba(255,255,255,.03);border-radius:0;padding:11px 14px}
-#install .code .env span{font:10px 'Barlow',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-#install .code .env code{color:#c8ff00;font-size:11.5px}
+#install .steps, lime accent) */
+#ctut .steps{gap:1px;background:#15171d;border-radius:0;padding:6px 0}
+#install .steps li,
+#ctut .steps li{background:transparent;border-radius:0;padding:13px 26px 13px 28px;font-family:'Barlow','Helvetica Neue',Arial,sans-serif;transition:background .12s}
+#install .steps li:hover,
+#ctut .steps li:hover{background:rgba(255,255,255,.06)}
+#install .steps em,
+#ctut .steps em{display:block;font-style:normal;font-size:9px;font-weight:700;letter-spacing:.14em;color:#c8ff00;opacity:.75;margin-bottom:2px}
+#install .steps b,
+#ctut .steps b{font:600 13px 'Barlow',sans-serif;letter-spacing:.1em;color:#fff;margin:0}
+#install .steps span,
+#ctut .steps span{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);line-height:1.5}
+#install .code,
+#ctut .code{background:#15171d;border-radius:0}
+#install .code .bar,
+#ctut .code .bar{background:#000;color:rgba(255,255,255,.45);font:600 10px 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:0 0 0 16px;height:40px}
+#install .code .ib,
+#ctut .code .ib{height:40px;padding:0 16px;background:none;border:0;border-radius:0;color:rgba(255,255,255,.45);font:600 10px 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+#install .code .ib:hover,
+#ctut .code .ib:hover{color:#c8ff00;background:rgba(255,255,255,.04)}
+#install .code pre,
+#ctut .code pre{color:rgba(255,255,255,.85);font-size:12.5px}
+#install .code pre .k,
+#ctut .code pre .k{color:#fff}#install .code pre .c,#ctut .code pre .c{color:rgba(255,255,255,.3)}#install .code pre .n,#ctut .code pre .n{color:#c8ff00}
+#install .code .env,
+#ctut .code .env{gap:1px}
+#install .code .env div,
+#ctut .code .env div{background:rgba(255,255,255,.03);border-radius:0;padding:11px 14px}
+#install .code .env span,
+#ctut .code .env span{font:10px 'Barlow',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+#install .code .env code,
+#ctut .code .env code{color:#c8ff00;font-size:11.5px}
 
 /* jump to the next section: a thin dashed drop line and small caps, after the technical annotations in the inspiration */
 .nextj{display:flex;flex-direction:row;align-items:center;gap:8px;margin:56px auto 0;opacity:.7;transition:opacity .2s;width:max-content;text-decoration:none;color:var(--ink);font:500 11px/1 var(--head);letter-spacing:.1em;text-transform:uppercase}
@@ -589,42 +605,78 @@ footer.site .ll{margin:0}footer.site .ll span{font-size:14px;padding:5px 10px}
 .shead .ll{align-items:flex-start;margin-left:0;margin-right:auto!important;text-align:left}
 
 /* deploy: a simple three-step starter */
-#install .data-grid{grid-template-columns:1fr;gap:6px}
-#install .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;padding:0;background:#000}
-#install .steps li{background:#15171d;padding:22px 26px 24px}
-#install .steps li:hover{background:#1b1e26}
-#install .steps em{font-size:11px;letter-spacing:.14em;margin-bottom:10px}
-#install .steps b{font-size:20px;letter-spacing:.12em;text-transform:uppercase}
-#install .steps span{font:12px var(--mono);letter-spacing:0;text-transform:none;color:rgba(255,255,255,.5);margin-top:4px}
-#install .code{position:static}
-@media (max-width:700px){#install .steps{grid-template-columns:1fr}}
+#install .data-grid,
+
+/* deploy: a simple three-step starter */
+#ctut .data-grid{grid-template-columns:1fr;gap:6px}
+#install .steps,
+#ctut .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;padding:0;background:#000}
+#install .steps li,
+#ctut .steps li{background:#15171d;padding:22px 26px 24px}
+#install .steps li:hover,
+#ctut .steps li:hover{background:#1b1e26}
+#install .steps em,
+#ctut .steps em{font-size:11px;letter-spacing:.14em;margin-bottom:10px}
+#install .steps b,
+#ctut .steps b{font-size:20px;letter-spacing:.12em;text-transform:uppercase}
+#install .steps span,
+#ctut .steps span{font:12px var(--mono);letter-spacing:0;text-transform:none;color:rgba(255,255,255,.5);margin-top:4px}
+#install .code,
+#ctut .code{position:static}
+@media (max-width:700px){#install .steps,#ctut .steps{grid-template-columns:1fr}}
 
 /* deploy starter: app-style mode tabs and an accordion of steps */
-#install .starter{background:#15171d;color:#fff;font-family:'Barlow','Helvetica Neue',Arial,sans-serif}
-#install .mtabs{display:flex;align-items:center;gap:4px;background:#000;padding:0 10px;min-height:46px;flex-wrap:wrap}
-#install .mtabs button{position:relative;background:none;border:0;padding:15px 12px 17px;font:600 11px 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);cursor:pointer}
-#install .mtabs button:hover,#install .mtabs button[aria-selected=true]{color:#fff}
-#install .mtabs button[aria-selected=true]::after{content:'';position:absolute;left:50%;bottom:7px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#c8ff00}
-#install .mnote{margin-left:auto;padding-right:8px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35)}
-#install .acc{display:grid;gap:1px;background:#0d0f13}
-#install .st{background:#15171d}
-#install .sh{display:grid;grid-template-columns:44px minmax(0,220px) 1fr 20px;align-items:center;gap:16px;width:100%;text-align:left;background:none;border:0;color:inherit;padding:18px 26px;cursor:pointer;font-family:inherit}
-#install .sh:hover{background:rgba(255,255,255,.04)}
-#install .sh em{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.14em;color:#c8ff00;opacity:.8}
-#install .sh b{font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
-#install .sh span{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-#install .chev{width:8px;height:8px;border-right:1.5px solid rgba(255,255,255,.5);border-bottom:1.5px solid rgba(255,255,255,.5);transform:rotate(45deg);transition:transform .25s;justify-self:end;margin-top:-4px}
-#install .st.open .chev{transform:rotate(225deg);margin-top:4px}
-#install .sb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
-#install .st.open .sb{grid-template-rows:1fr}
-#install .sbi{overflow:hidden;position:relative;padding:0 26px 0 86px}
-#install .st.open .sbi{padding-bottom:20px}
-#install .sbi pre{margin:0;padding:14px 16px;background:#0d0f13;font:12.5px/1.8 var(--mono);color:rgba(255,255,255,.85);overflow-x:auto}
-#install .sbi pre .c{color:rgba(255,255,255,.35)}
-#install .cp{position:absolute;right:34px;top:8px;background:none;border:0;color:rgba(255,255,255,.45);font:600 10px 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:6px}
-#install .cp:hover{color:#c8ff00}
-@media (max-width:700px){#install .sh{grid-template-columns:34px 1fr 16px}#install .sh span{display:none}#install .sbi{padding-left:26px}#install .mnote{display:none}}
-#install .acc[hidden],#install .mnote[hidden]{display:none}
+#install .starter,
+
+/* deploy starter: app-style mode tabs and an accordion of steps */
+#ctut .starter{background:#15171d;color:#fff;font-family:'Barlow','Helvetica Neue',Arial,sans-serif}
+#install .mtabs,
+#ctut .mtabs{display:flex;align-items:center;gap:4px;background:#000;padding:0 10px;min-height:46px;flex-wrap:wrap}
+#install .mtabs button,
+#ctut .mtabs button{position:relative;background:none;border:0;padding:15px 12px 17px;font:600 11px 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);cursor:pointer}
+#install .mtabs button:hover,#install .mtabs button[aria-selected=true],
+#ctut .mtabs button:hover,#ctut .mtabs button[aria-selected=true]{color:#fff}
+#install .mtabs button[aria-selected=true]::after,
+#ctut .mtabs button[aria-selected=true]::after{content:'';position:absolute;left:50%;bottom:7px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#c8ff00}
+#install .mnote,
+#ctut .mnote{margin-left:auto;padding-right:8px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+#install .acc,
+#ctut .acc{display:grid;gap:1px;background:#0d0f13}
+#install .st,
+#ctut .st{background:#15171d}
+#install .sh,
+#ctut .sh{display:grid;grid-template-columns:44px minmax(0,220px) 1fr 20px;align-items:center;gap:16px;width:100%;text-align:left;background:none;border:0;color:inherit;padding:18px 26px;cursor:pointer;font-family:inherit}
+#install .sh:hover,
+#ctut .sh:hover{background:rgba(255,255,255,.04)}
+#install .sh em,
+#ctut .sh em{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.14em;color:#c8ff00;opacity:.8}
+#install .sh b,
+#ctut .sh b{font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+#install .sh span,
+#ctut .sh span{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+#install .chev,
+#ctut .chev{width:8px;height:8px;border-right:1.5px solid rgba(255,255,255,.5);border-bottom:1.5px solid rgba(255,255,255,.5);transform:rotate(45deg);transition:transform .25s;justify-self:end;margin-top:-4px}
+#install .st.open .chev,
+#ctut .st.open .chev{transform:rotate(225deg);margin-top:4px}
+#install .sb,
+#ctut .sb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+#install .st.open .sb,
+#ctut .st.open .sb{grid-template-rows:1fr}
+#install .sbi,
+#ctut .sbi{overflow:hidden;position:relative;padding:0 26px 0 86px}
+#install .st.open .sbi,
+#ctut .st.open .sbi{padding-bottom:20px}
+#install .sbi pre,
+#ctut .sbi pre{margin:0;padding:14px 16px;background:#0d0f13;font:12.5px/1.8 var(--mono);color:rgba(255,255,255,.85);overflow-x:auto}
+#install .sbi pre .c,
+#ctut .sbi pre .c{color:rgba(255,255,255,.35)}
+#install .cp,
+#ctut .cp{position:absolute;right:34px;top:8px;background:none;border:0;color:rgba(255,255,255,.45);font:600 10px 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:6px}
+#install .cp:hover,
+#ctut .cp:hover{color:#c8ff00}
+@media (max-width:700px){#install .sh,#ctut .sh{grid-template-columns:34px 1fr 16px}#install .sh span,#ctut .sh span{display:none}#install .sbi,#ctut .sbi{padding-left:26px}#install .mnote,#ctut .mnote{display:none}}
+#install .acc[hidden],#install .mnote[hidden],
+#ctut .acc[hidden],#ctut .mnote[hidden]{display:none}
 main > section:not(.hero):not(.glfigs) .wrap{padding-left:calc(max(4vw,16px) + var(--inkL,0px));padding-right:calc(max(4vw,16px) + var(--inkR,0px))}
 .nextj{width:30px;height:30px;padding:0;gap:0;justify-content:center;background:none;color:var(--mute);opacity:.6}
 .nextj:hover{opacity:1}
@@ -697,11 +749,16 @@ main > section:not(.hero) h2.giant{visibility:hidden}
   .dec .dh h3{margin-bottom:4px}
   .tl{gap:8px!important}
   .ev span,.ev p{font-size:12.5px;line-height:1.35}
-  #install .sbi{padding:0 16px 0 16px}
-  #install .st.open .sbi{padding-bottom:16px}
-  #install .sbi pre{padding:32px 14px 14px;font-size:11.5px}
-  #install .cp{right:22px;top:6px}
-  #install .sh{padding-left:16px!important;padding-right:16px!important}
+  #install .sbi,
+  #ctut .sbi{padding:0 16px 0 16px}
+  #install .st.open .sbi,
+  #ctut .st.open .sbi{padding-bottom:16px}
+  #install .sbi pre,
+  #ctut .sbi pre{padding:32px 14px 14px;font-size:11.5px}
+  #install .cp,
+  #ctut .cp{right:22px;top:6px}
+  #install .sh,
+  #ctut .sh{padding-left:16px!important;padding-right:16px!important}
   footer.site{padding:48px 0 24px}
   .fgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:28px 14px}
   .fgrid > div:first-child{grid-column:1/-1}
@@ -729,7 +786,8 @@ main > section:not(.hero) h2.giant{visibility:hidden}
   #viewer{gap:10px!important}
 }
 @media (max-width:600px){
-  #install .sbi pre{white-space:pre-wrap;word-break:break-all}
+  #install .sbi pre,
+  #ctut .sbi pre{white-space:pre-wrap;word-break:break-all}
   .glfigs .doms button{min-width:44px}
   section[id]{scroll-margin-top:0}
 }
@@ -1046,9 +1104,11 @@ footer.site .fgrid{margin-bottom:8px}
 .sbi .cb pre{font-size:13.5px!important;line-height:1.75!important;padding:14px 70px 14px 16px!important}
 .sbi .cb .cp{top:10px!important}
 .sbi>*:last-child{margin-bottom:6px}
-#install .sh b{font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.1em!important}
-@media (min-width:901px){#install .sh{grid-template-columns:44px minmax(0,280px) 1fr 20px!important}}
-#install .sh em{font:600 13px 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.08em}
+#install .sh b,
+#ctut .sh b{font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.1em!important}
+@media (min-width:901px){#install .sh,#ctut .sh{grid-template-columns:44px minmax(0,280px) 1fr 20px!important}}
+#install .sh em,
+#ctut .sh em{font:600 13px 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.08em}
 /* connect cards: the same type as Set up */
 .netc em{font:600 13px 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.08em!important;opacity:1!important}
 .netc b{font:500 16px/1.25 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.1em!important;margin:12px 0 10px!important}
@@ -1085,7 +1145,8 @@ header.site .cta{padding:9px 14px!important;font-size:12px!important;line-height
 .ev span,.tl .ev span{font:400 14px/1.4 'Barlow',sans-serif!important}
 .dh h3,.xi-h h3{font-size:26px!important}
 .cp,.sbi .cb .cp{font:700 12px/1 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important}
-#install .sh span,.mnote{font:700 12px/1.3 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important;text-transform:uppercase}
+#install .sh span,.mnote,
+#ctut .sh span{font:700 12px/1.3 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important;text-transform:uppercase}
 a.nextj .nt span{font:700 12px/1 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important}
 .sdesc b,.oglists b,.sbi .ssh,.oglists h3,footer.site h4{font:700 15px/1.25 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.1em!important;text-transform:uppercase!important}
 #viewer .xtabs .row b,.sdrc .sdrcap span,.mtabs button,header.site nav a{font:600 11px/1.3 'Barlow',sans-serif!important;letter-spacing:.2em!important;text-transform:uppercase!important}
@@ -1111,12 +1172,16 @@ footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-s
 #viewer .xcap,#viewer #tag,#viewer .xdots-under ~ * .cap,#viewer [class*=cap]{font-family:'Barlow Condensed','Barlow',sans-serif}
 .ev span,.tl .ev span{font:400 15px/1.45 'Barlow',sans-serif!important}
 .dh h3,.xi-h h3{letter-spacing:-.03em!important}
-#install .sh em,.netc em{font:700 12px/1 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important}
-#install .sh span{font-weight:400!important;letter-spacing:.12em!important}
+#install .sh em,.netc em,
+#ctut .sh em{font:700 12px/1 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important}
+#install .sh span,
+#ctut .sh span{font-weight:400!important;letter-spacing:.12em!important}
 #viewer #bar .seg button{font:700 12px/1.3 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.14em!important}
 /* accordion arrows as in the app: right when closed, down when open */
-#install .chev{transform:rotate(-45deg)!important;margin-top:0!important}
-#install .st.open .chev{transform:rotate(45deg)!important;margin-top:-4px!important}
+#install .chev, down when open */
+#ctut .chev{transform:rotate(-45deg)!important;margin-top:0!important}
+#install .st.open .chev,
+#ctut .st.open .chev{transform:rotate(45deg)!important;margin-top:-4px!important}
 .glvig{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 75% 70% at 50% 55%,rgba(5,6,9,0) 55%,rgba(5,6,9,.5) 100%);box-shadow:inset 0 0 140px 30px rgba(5,6,9,.55)}
 /* globe labels fade in whenever they appear (new traffic, coming round the globe, section changes) */
 #gllabels .mlp:not(.off){animation:mlpIn .6s ease both}
@@ -1132,8 +1197,10 @@ footer.site .fine span,footer.site .fine .mono{font:400 13px/1.4 'Barlow',sans-s
 .lbx .lbc,.lbx .lbp,.lbx .lbn{position:absolute;z-index:2;width:40px;height:40px;display:grid;place-items:center;background:#000;color:#fff;border:0;cursor:pointer;font:400 22px/1 'Barlow',sans-serif}
 .lbx .lbc{top:16px;right:16px}.lbx .lbp{left:16px;top:50%;margin-top:-20px}.lbx .lbn{right:16px;top:50%;margin-top:-20px}
 .lbx button:hover{background:#262626}
-#install .st.open .sbi{padding-top:22px!important}
-#install .sbi>*:first-child{margin-top:0!important}
+#install .st.open .sbi,
+#ctut .st.open .sbi{padding-top:22px!important}
+#install .sbi>*:first-child,
+#ctut .sbi>*:first-child{margin-top:0!important}
 footer.site .flogo{display:grid;width:max-content;position:relative;z-index:1;margin:clamp(40px,6vw,72px) 0 0;margin-left:var(--inkL,0px);color:var(--ink)}
 footer.site .flogo i{width:26px;height:26px;border:4px solid var(--ink);border-radius:50%;display:grid;place-items:center;box-sizing:border-box}
 footer.site .flogo i::after{content:'';width:8px;height:8px;border-radius:50%;background:#c8ff00}
@@ -1166,17 +1233,24 @@ dialog.credits li a:hover{border-bottom-style:solid}
 dialog.credits li span{display:block;color:var(--mute)}
 @media (max-width:700px){dialog.credits .crg{grid-template-columns:1fr}}
 html.crlock{overflow:hidden}
-#install .mtabs{background:none!important;padding:0!important;min-height:0!important;gap:30px!important;margin:0 0 22px!important}
-#install .mtabs button{padding:6px 0 10px!important;color:var(--mute)!important;transition:color .2s}
-#install .mtabs button:hover,#install .mtabs button[aria-selected=true]{color:var(--ink)!important}
-#install .mtabs button::after{content:'';position:absolute;left:calc(50% - .07em);bottom:0!important;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--mute)!important;transform:scale(0);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
-#install .mtabs button[aria-selected=true]::after{transform:scale(1)}
-#install .mtabs button:focus-visible{outline:1px solid var(--mute)}
-@media (max-width:700px){#install .mtabs{column-gap:22px!important;row-gap:4px!important}}
+#install .mtabs,
+#ctut .mtabs{background:none!important;padding:0!important;min-height:0!important;gap:30px!important;margin:0 0 22px!important}
+#install .mtabs button,
+#ctut .mtabs button{padding:6px 0 10px!important;color:var(--mute)!important;transition:color .2s}
+#install .mtabs button:hover,#install .mtabs button[aria-selected=true],
+#ctut .mtabs button:hover,#ctut .mtabs button[aria-selected=true]{color:var(--ink)!important}
+#install .mtabs button::after,
+#ctut .mtabs button::after{content:'';position:absolute;left:calc(50% - .07em);bottom:0!important;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--mute)!important;transform:scale(0);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+#install .mtabs button[aria-selected=true]::after,
+#ctut .mtabs button[aria-selected=true]::after{transform:scale(1)}
+#install .mtabs button:focus-visible,
+#ctut .mtabs button:focus-visible{outline:1px solid var(--mute)}
+@media (max-width:700px){#install .mtabs,#ctut .mtabs{column-gap:22px!important;row-gap:4px!important}}
 .gl-top .tick{height:150px!important;margin:clamp(14px,2.4vh,28px) 0 0!important;justify-content:flex-start}
 @media (max-width:600px){.gl-top .tick{height:126px!important}}
 .oglists h3{margin-bottom:24px!important}
-#install .sbi .ssh,#install .ssh{font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.1em!important}
+#install .sbi .ssh,#install .ssh,
+#ctut .sbi .ssh,#ctut .ssh{font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.1em!important}
 /* section points: like the hero ticker, each row opens, then its label wipes in, one after another, once */
 .js-rev .shead .ll{gap:0!important}
 .js-rev .shead .ll .llr{height:0;overflow:hidden;transition:height .5s ease,margin .5s ease;margin-bottom:0}
@@ -1186,90 +1260,6 @@ html.crlock{overflow:hidden}
 @media (max-width:420px){.gl-top .tick .tkp{letter-spacing:.07em}}
 /* Connect: stepped tutorial with an isometric three.js illustration */
 .ctut{margin-top:clamp(36px,5vw,64px)}
-.ctabs{display:flex;flex-wrap:wrap;column-gap:30px;row-gap:4px;margin:0 0 22px}
-.ctabs button{position:relative;background:none;border:0;border-radius:0;padding:6px 0 10px;cursor:pointer;font:600 15px/1 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);transition:color .2s}
-.ctabs button:hover,.ctabs button[aria-selected=true]{color:var(--ink)}
-.ctabs button::after{content:'';position:absolute;left:50%;bottom:0;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--mute);transform:scale(0);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
-.ctabs button[aria-selected=true]::after{transform:scale(1)}
-.ctabs button:focus-visible{outline:1px solid var(--mute)}
-@media (max-width:700px){.ctabs{column-gap:22px}}
-.ctbody{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);color:var(--ink)}
-.ctsteps{display:flex;flex-direction:column;padding:clamp(20px,3vw,34px)}
-.ctlist{list-style:none;margin:0;padding:0;counter-reset:ct;flex:1}
-.ctlist li{counter-increment:ct;position:relative;padding:12px 0 12px 44px;border:0;cursor:pointer;opacity:.42;transition:opacity .3s}
-.ctlist li::before{content:counter(ct,decimal-leading-zero);position:absolute;left:0;top:12px;font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;color:rgba(255,255,255,.55)}
-.ctlist li b{display:block;font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;text-transform:uppercase}
-.ctlist li p{display:none;margin:10px 0 0;font:400 15px/1.55 'Barlow',sans-serif;color:rgba(255,255,255,.72)}
-.ctlist li pre{display:none;margin:10px 0 0;padding:12px 14px;background:#0d0f13;font:12.5px/1.6 var(--mono);color:rgba(255,255,255,.85);overflow-x:auto}
-.ctlist li em{font-style:normal;color:#fff}
-.ctlist li code{font:12.5px var(--mono);color:#fff}
-.ctlist li a{color:#c8ff00}
-.ctlist li.on{opacity:1;cursor:default}
-.ctlist li.on::before{color:#c8ff00}
-.ctlist li.on p,.ctlist li.on pre{display:block}
-.ctnav{display:flex;align-items:center;gap:12px;margin-top:18px}
-.ctnav button{width:36px;height:36px;display:grid;place-items:center;background:#000;color:#fff;border:0;border-radius:0;cursor:pointer}
-.ctnav button:hover{background:#2a2e38}
-.ctnav button:disabled{opacity:.35;cursor:default}
-.ctcount{font:500 14px/1 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.1em;color:rgba(255,255,255,.6)}
-@media (max-width:900px){.ctbody{grid-template-columns:1fr}}
-.ctbody{align-items:start}
-.ctstage{position:relative;container-type:inline-size}
-.ctwhere{display:flex;align-items:center;gap:8px;margin:0 0 12px;font:500 13px/1 'Barlow Condensed','Barlow',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);min-height:14px}
-.ctwhere i{width:7px;height:7px;background:var(--ink)}
-.ctwhere span{color:var(--mute)}
-.ax{--lime:#c8ff00;font:400 clamp(11px,1.75cqw,13px)/1.35 'Barlow',sans-serif;background:#f5f5f3;color:#111;box-shadow:0 1px 0 rgba(0,0,0,.06),0 18px 40px -22px rgba(0,0,0,.35);overflow:hidden}
-.axbar{display:flex;align-items:center;justify-content:space-between;height:3.3em;padding:0 1.2em;background:#000;color:#fff}
-.axlogo{display:flex;align-items:center;gap:.5em;font:400 1.35em/1 'Barlow',sans-serif;letter-spacing:.02em}
-.axlogo i{width:.95em;height:.95em;border-radius:50%;border:.17em solid #fff;box-sizing:border-box;position:relative}
-.axlogo i::after{content:'';position:absolute;inset:.13em;border-radius:50%;background:var(--lime)}
-.axnav{display:flex;gap:1.6em}.axnav b{font:600 .72em/1 'Barlow',sans-serif;letter-spacing:.16em}
-.axmain{display:flex;min-height:30em}
-.axrail{flex:none;width:2.6em;background:#14171e;display:flex;flex-direction:column;align-items:center;gap:1.2em;padding-top:1.2em}
-.axrail i{width:.9em;height:.9em;border:.12em solid rgba(255,255,255,.7);box-sizing:border-box}
-.axrail i.on{border-color:var(--lime);box-shadow:-.85em 0 0 -.3em var(--lime)}
-.axpage{flex:1;min-width:0;padding:1.7em 2em 2em;position:relative}
-.axh{display:flex;align-items:center;gap:.7em;font:600 1.45em/1 'Barlow',sans-serif;letter-spacing:.14em;margin-bottom:1.1em}
-.axh i{width:.3em;height:.3em;border-radius:50%;background:var(--lime)}
-.axs{font:600 .82em/1 'Barlow',sans-serif;letter-spacing:.14em;margin:1.4em 0 .8em}
-.axs.mute{color:#6a6a68;font-weight:500}
-.axhost{display:flex;align-items:center;gap:.7em;margin:.9em 0 .5em;font-weight:500}
-.axhost small{color:#6a6a68;font:400 .85em var(--mono)}
-.axtag{font:600 .66em/1 'Barlow',sans-serif;letter-spacing:.14em;padding:.35em .5em;background:#111;color:var(--lime)}
-.axrow{display:flex;align-items:center;gap:.7em;background:#ebebe9;padding:.8em 1em;margin-bottom:.35em}
-.axrow .d{width:.5em;height:.5em;border-radius:50%;background:#b5b5b3;flex:none}.axrow .d.on{background:#5fd400}
-.axrow b{font-weight:500}.axrow small{color:#6a6a68}
-.axrow .sp{flex:1}
-.axbtn{display:inline-block;font:600 .7em/1 'Barlow',sans-serif;letter-spacing:.16em;padding:.75em 1.1em;background:#dcdcda;color:#333;white-space:nowrap}
-.axbtn.go{background:var(--lime);color:#111}
-.axbtn.ghost{background:#e2e2e0}
-.axform{background:#ebebe9;padding:1em 1.2em}
-.axf{display:grid;grid-template-columns:9.5em minmax(0,1fr);align-items:center;gap:1em;padding:.45em 0}
-.axf label{font:600 .68em/1 'Barlow',sans-serif;letter-spacing:.14em;color:#333}
-.axin{display:block;min-height:1.35em;border-bottom:1px solid #b9b9b7;padding:.2em 0;color:#111;white-space:nowrap;overflow:hidden}
-.axin.typing{border-bottom-color:#111}
-.axin.typing::after{content:'';display:inline-block;width:1px;height:1em;background:#111;vertical-align:-.15em;margin-left:1px;animation:axcar 1s steps(1) infinite}
-@keyframes axcar{50%{opacity:0}}
-.axseg{display:inline-flex}.axseg em{font:600 .68em/1 'Barlow',sans-serif;font-style:normal;letter-spacing:.14em;padding:.75em 1em;background:#dcdcda;color:#555}.axseg em.on{background:var(--lime);color:#111}
-.axacts{display:flex;justify-content:flex-end;gap:.4em;margin-top:.8em}
-.axsw{width:2.6em;height:1.35em;background:var(--lime);position:relative;flex:none}.axsw::after{content:'';position:absolute;right:.2em;top:.2em;width:.95em;height:.95em;background:#111}
-.axsw.off{background:#cfcfcd}.axsw.off::after{right:auto;left:.2em;background:#888}
-.axnote{color:#555;font-size:.9em;margin:.3em 0 .8em}
-.axfp{font:500 1em/1.5 var(--mono);letter-spacing:.04em;background:#fff;padding:.7em .9em;border:1px solid #d6d6d4;word-break:break-all}
-.axok{display:flex;align-items:center;gap:.5em;margin:.8em 0;font-weight:500}.axok::before{content:'';width:.9em;height:.5em;border-left:.17em solid #3a9c00;border-bottom:.17em solid #3a9c00;transform:rotate(-45deg) translateY(-.15em)}
-.axterm{background:#0d0f13;color:#e8e8e6;font:500 1em/1.6 var(--mono);padding:1em 1.2em;min-height:10em}
-.axterm .p{color:var(--lime)}.axterm .axin{color:#e8e8e6}.axterm .axin.typing::after{background:#e8e8e6}.axterm .m{color:#8a8f99}
-.axsplit{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:1.2em;align-items:start}
-.axmap{position:relative;aspect-ratio:1/1.05;background:#e4e6e1;overflow:hidden}
-.axmap svg{position:absolute;inset:0;width:100%;height:100%}
-.axwf{height:5em;margin-top:.6em;background:linear-gradient(90deg,#0b1020,#0b1020);position:relative;overflow:hidden}
-.axwf canvas{width:100%;height:100%;display:block}
-.hl{position:relative;z-index:1;outline:2px solid #111;outline-offset:3px;animation:axhl 1.4s ease-in-out infinite}
-@keyframes axhl{50%{outline-color:rgba(17,17,17,.15)}}
-.axfade{animation:axin .35s ease both}@keyframes axin{from{opacity:0;transform:translateY(4px)}}
-.axpage .ax-r{opacity:0;animation:axrv .3s ease forwards}@keyframes axrv{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-@container (max-width:520px){.axnav{display:none}.axrail{display:none}.axpage{padding:1.3em 1.2em 1.4em}.axf{grid-template-columns:7.6em minmax(0,1fr)}.axsplit{grid-template-columns:1fr}.axmain{min-height:0}}
-@media (prefers-reduced-motion:reduce){.hl{animation:none}.axfade,.axpage .ax-r{animation:none;opacity:1}}
 .h3bar .hgh{background:#c8ff00;color:#0a0c06;padding:9px 14px;font:600 12px/1 'Barlow',sans-serif;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:0}
 .h3bar .hgh:hover{background:#d8ff33}
 @media (max-width:420px){.h3bar .hgh{padding:8px 11px;font-size:11px}}
@@ -1282,14 +1272,6 @@ html.crlock{overflow:hidden}
 .ctwhy p{margin:8px 0 0;font:400 14.5px/1.5 'Barlow',sans-serif;color:var(--mute)}
 @media (max-width:1000px){.ctwhy ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.ctwhy ul{grid-template-columns:1fr}}
-.ctsteps{padding:clamp(4px,1vw,12px) 0}
-.ctlist li::before{color:var(--mute)}
-.ctlist li p{color:var(--mute)}
-.ctlist li em,.ctlist li code{color:var(--ink)}
-.ctlist li a{color:var(--ink);text-decoration:underline}
-.ctlist li.on::before{color:var(--ink)}
-.ctnav button{background:#000;color:#fff}.ctnav button:hover{background:#333}
-.ctcount{color:var(--mute)}
 </style>
 <script>document.documentElement.classList.add('js-title')</script>
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1433,35 +1415,9 @@ SDR_MANAGER_LOCAL_NATIVE=1">Copy</button></div><h5 class="ssh">3. Mac only, once
         <div class="netc"><em>03</em><b>Share your own</b><p>Stream the SDR receivers Sentinel manages to other Sentinels, SDR++ or GQRX, publicly or to a list you choose.</p><dl><div><dt>Public</dt><dd>Any rtl_tcp app</dd></div><div><dt>Private</dt><dd>Listed Sentinels</dd></div><div><dt>Settings</dt><dd>SDR Manager</dd></div></dl><a class="netl" href="https://github.com/barrygee/Sentinel/blob/main/docs/use/sdr-manager.md" target="_blank" rel="noopener">Sharing guide ↗</a></div>
       </div>
       <div class="ctut" id="ctut">
-        <div class="ctabs" role="tablist" aria-label="Connection tutorials">
-          <button type="button" role="tab" aria-selected="true" data-m="peer">Link remote Sentinels</button>
-          <button type="button" role="tab" aria-selected="false" data-m="host">Add a Pi by the antenna</button>
-          <button type="button" role="tab" aria-selected="false" data-m="tcp">Connect an rtl_tcp stream</button>
-        </div>
-        <div class="ctbody">
-          <div class="ctstage"><div class="ctwhere" aria-hidden="true"></div><div class="ax" aria-hidden="true"><div class="axbar"><span class="axlogo"><i></i>SENTINEL</span><span class="axnav"><b>AIR</b><b>SPACE</b><b>SEA</b><b>LAND</b><b>SDR</b></span></div><div class="axmain"><div class="axrail"><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div><div class="axpage"></div></div></div></div>
-          <div class="ctsteps">
-            <ol class="ctlist" data-m="peer">
-              <li><b>Run Sentinel at each site</b><p>Full Sentinel on each computer, each with its own antennas: home, a hilltop, the coast, a friend's house. Under App Settings give each a <em>Machine Name</em> and <em>Location</em>, so the others name it and place it on their maps.</p></li>
-              <li><b>Set a password and choose what to share</b><p>On each: a <em>Console Password</em> under App Settings › This machine. Make a dongle <em>Public</em> to share it, or <em>Private</em> and list the Sentinels you trust under <em>Private Access</em>.</p></li>
-              <li><b>Add each other as Sentinel hosts</b><p>Settings › SDR › Devices › <em>+ Add a new Sentinel host</em>: the other site's IP address, port <code>8000</code> and its console password. Do it on both sides to share both ways.</p></li>
-              <li><b>Check the fingerprint, then trust it</b><p>Compare the fingerprint shown with the other Sentinel's Certificate card (App Settings › Security). If they match, <em>Trust and add</em>. The link is now encrypted.</p></li>
-              <li><b>One picture from every site</b><p>Their dongles are radios in your SDR panel and sources for Air, Land and Sea. Each site shows on every map with its status, and works as a range-ring centre or overhead-alert place.</p></li>
-            </ol>
-            <ol class="ctlist" data-m="host" hidden>
-              <li><b>Run SDR Manager on each remote computer</b><p>On each computer by an antenna (a Raspberry Pi is ideal), follow <a href="#install">Set up SDR Manager only</a> and plug its dongles in.</p></li>
-              <li><b>Set a password and start the streams</b><p>Open each remote's page at <code>http://&lt;remote&gt;:8080</code>. Set a <em>Console Password</em> under App Settings › This machine. On each dongle: set <em>Visibility: Public</em>, switch its stream on and <em>Apply changes</em>.</p></li>
-              <li><b>Add each as a Sentinel host</b><p>On your Sentinel: Settings › SDR › Devices › <em>+ Add a new Sentinel host</em>. Enter its IP address, port <code>8000</code> and its console password, then <em>Add</em>. Repeat for each remote.</p></li>
-              <li><b>Check each fingerprint, then trust it</b><p>Compare the fingerprint shown with that remote's Certificate card (App Settings › Security). If they match, <em>Trust and add</em>. Each link is now encrypted.</p></li>
-              <li><b>Put each remote to work</b><p><em>Add</em> the dongles you want, then pick them as sources in Settings › Air, Land and Sea: one remote on ADS-B, one on APRS, one on AIS. Or tune any of them in the SDR panel.</p></li>
-            </ol>
-            <ol class="ctlist" data-m="tcp" hidden>
-              <li><b>Start rtl_tcp next to each dongle</b><p>On each computer with a dongle plugged in (one rtl_tcp per dongle):</p><pre>rtl_tcp -a 0.0.0.0 -p 1234</pre></li>
-              <li><b>Add each as a remote SDR device</b><p>On your Sentinel: Settings › SDR › Devices › <em>+ Add a remote SDR device</em>. Give it a name, its computer's IP address and its port, then <em>Save</em>.</p></li>
-              <li><b>Pick one and listen</b><p>Open SDR and pick one at the top of the radio panel. It shows <em>Connected</em> and the waterfall starts. rtl_tcp has no password, so only use it on a network you trust.</p></li>
-            </ol>
-            <div class="ctnav"><button type="button" class="ctprev" aria-label="Previous step"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2 4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button><span class="ctcount" aria-live="polite">1 / 5</span><button type="button" class="ctnext" aria-label="Next step"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="m5 2 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button></div>
-          </div>
+        <div class="mtabs" role="tablist"><button role="tab" data-m="peer" aria-selected="true">Link remote Sentinels</button><button role="tab" data-m="host" aria-selected="false">Add a Pi by the antenna</button><button role="tab" data-m="tcp" aria-selected="false">Connect an rtl_tcp stream</button></div>
+        <div class="starter">
+        <div class="acc" data-mode="peer"><div class="st"><button class="sh" aria-expanded="false"><em>01</em><b>Run Sentinel at each site</b><span>Full Sentinel, each with its own antennas</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Follow <a href="#install">Set up Sentinel</a> on each computer: home, a hilltop, the coast, a friend’s house.</li><li>Give each a fixed address on its router (a DHCP reservation). If an address changes, the others stop trusting it until you check its certificate again.</li><li>On each, under Settings › App Settings, set a <b>Machine Name</b> and <b>Location</b>, so the others name it and place it on their maps.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>02</em><b>Set a console password</b><span>On each Sentinel you’ll share</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Settings › App Settings › This machine › <b>Console Password</b>.</li><li>Other Sentinels sign in with it, over HTTPS, so it never crosses the network readable.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>03</em><b>Choose what to share</b><span>Public, or only Sentinels you name</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Settings › SDR › Devices: on each dongle, the pencil, then <b>Visibility</b>.</li><li><b>Public</b>: any Sentinel with the console password can use it.</li><li><b>Private</b>: only the Sentinels listed under App Settings › This machine › <b>Private Access</b>. Enter each one’s IP address, then <b>Add address</b>.</li><li><b>Apply changes</b>.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>04</em><b>Add the other Sentinel</b><span>Settings › SDR › Devices</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li><b>+ Add a new Sentinel host</b>.</li><li><b>IP address</b>: the other site’s address. <b>Label</b>: a name for it. <b>Port</b>: <code>8000</code>. <b>Console password</b>: the one set there.</li><li><b>Add SDRs</b>: <b>Manually</b> to choose its dongles one by one, or <b>Automatically</b> to use every public one.</li><li><b>Add</b>. Do the same on the other Sentinel to share both ways.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>05</em><b>Check the fingerprint, then trust it</b><span>So you know it’s the right Sentinel</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Sentinel shows the other site’s certificate <b>fingerprint</b>.</li><li>Compare it with that Sentinel’s own, under App Settings › Security › Certificate.</li><li>If they match, <b>Trust and add</b>. If not, stop: something else is answering at that address.</li><li>The host is listed under Sentinel Hosts, marked <b>Encrypted</b>.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>06</em><b>Use its radios</b><span>In every section</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li><b>Add</b> beside each of its dongles you want (none needed with Automatically).</li><li>Tune them in the SDR panel, and pick them as decoder sources in Settings › Air, Land and Sea.</li><li>Its site shows on every map, with its status. Use it as a range-ring centre or an overhead-alert place.</li></ul></div></div></div></div><div class="acc" data-mode="host" hidden><div class="st"><button class="sh" aria-expanded="false"><em>01</em><b>Set up the Pi</b><span>SDR Manager only, by the antenna</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Follow <a href="#install" data-mgr>Set up SDR Manager only</a> on a Raspberry Pi 4 or 5 (64-bit) or a spare Linux computer.</li><li>Give it a fixed address on your router.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>02</em><b>Share its dongles</b><span>On the Pi’s own page</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Open <code>http://&lt;pi&gt;:8080</code> from any computer on your network.</li><li>Settings › App Settings › This machine: set a <b>Console Password</b>, a <b>Machine Name</b> and a <b>Location</b>.</li><li>Settings › SDR Manager, on each dongle: the pencil, a <b>Name</b>, its <b>Output port</b>, <b>Visibility: Public</b>, <b>Apply changes</b>. Then switch its stream on and <b>Apply changes</b> again.</li><li>Each streaming dongle shows a green dot.</li></ul><div class="cl">Show the Pi’s certificate fingerprint</div><div class="cb"><pre>docker compose logs sdr-manager-local | grep fingerprint</pre><button class="cp" data-copy="docker compose logs sdr-manager-local | grep fingerprint">Copy</button></div></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>03</em><b>Add the Pi to your Sentinel</b><span>Settings › SDR › Devices</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li><b>+ Add a new Sentinel host</b>: the Pi’s <b>IP address</b>, a <b>Label</b>, <b>Port</b> <code>8000</code> and its <b>Console password</b>.</li><li><b>Add SDRs</b>: Manually or Automatically, then <b>Add</b>.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>04</em><b>Check the fingerprint, then trust it</b><span>Matches the Pi’s certificate</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Compare the fingerprint shown with the Pi’s (App Settings › Security › Certificate, or the log line above).</li><li>If they match, <b>Trust and add</b>. The Pi is listed under Sentinel Hosts, marked <b>Encrypted</b>.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>05</em><b>Use its dongles</b><span>As if they were plugged in here</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li><b>Add</b> beside each Pi dongle you want.</li><li>Tune them in the SDR panel, and pick them as decoder sources in Settings › Air, Land and Sea.</li></ul></div></div></div></div><div class="acc" data-mode="tcp" hidden><div class="st"><button class="sh" aria-expanded="false"><em>01</em><b>Start rtl_tcp next to the dongle</b><span>One rtl_tcp per dongle</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>On the computer the dongle is plugged into. Give each dongle its own port.</li></ul><div class="cl">Start the stream</div><div class="cb"><pre>rtl_tcp -a 0.0.0.0 -p 1234</pre><button class="cp" data-copy="rtl_tcp -a 0.0.0.0 -p 1234">Copy</button></div></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>02</em><b>Add it to your Sentinel</b><span>Settings › SDR › Devices</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li><b>+ Add a remote SDR device</b>.</li><li>A <b>Name</b>, the computer’s <b>IP address</b> and the <b>Port</b> (usually <code>1234</code>).</li><li>Optionally a <b>Latitude</b> and <b>Longitude</b>, so it shows on every map.</li><li><b>Save</b>. It’s listed under Non-Sentinel SDR devices.</li></ul></div></div></div><div class="st"><button class="sh" aria-expanded="false"><em>03</em><b>Pick it and listen</b><span>In the SDR panel</span><i class="chev"></i></button><div class="sb"><div class="sbi"><ul class="sl"><li>Open SDR and pick it at the top of the radio panel. It shows <b>Connected</b> and the waterfall starts.</li><li>rtl_tcp has no password, so only use it on a network you trust.</li></ul></div></div></div></div>
         </div>
         <div class="ctwhy">
           <h3>Why link Sentinels</h3>
@@ -1710,9 +1666,10 @@ const OG=[['Air','Aircraft · ADS-B','Your chosen ADS-B provider or selected rem
 
 /* deploy starter */
 const toast=document.getElementById('toast');
-document.querySelectorAll('#install .mtabs button').forEach(b=>b.addEventListener('click',()=>{const m=b.dataset.m;document.querySelectorAll('#install .mtabs button').forEach(x=>x.setAttribute('aria-selected',x===b));document.querySelectorAll('#install .acc').forEach(a=>a.hidden=a.dataset.mode!==m);document.querySelectorAll('#install .mnote').forEach(n=>n.hidden=n.dataset.for!==m)}));
-document.querySelectorAll('#install .sh').forEach(h=>h.addEventListener('click',()=>{const st=h.parentElement,o=!st.classList.contains('open');st.classList.toggle('open',o);h.setAttribute('aria-expanded',o)}));
-document.querySelectorAll('#install .cp').forEach(c=>c.addEventListener('click',e=>{e.stopPropagation();const t=c.dataset.copy;const say=m=>{toast.textContent=m;toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1600)};
+['#install','#ctut'].forEach(S=>document.querySelectorAll(S+' .mtabs button').forEach(b=>b.addEventListener('click',()=>{const m=b.dataset.m;document.querySelectorAll(S+' .mtabs button').forEach(x=>x.setAttribute('aria-selected',x===b));document.querySelectorAll(S+' .acc').forEach(a=>a.hidden=a.dataset.mode!==m);document.querySelectorAll(S+' .mnote').forEach(n=>n.hidden=n.dataset.for!==m)})));
+document.querySelectorAll('#ctut a[data-mgr]').forEach(a=>a.addEventListener('click',()=>{const t=document.querySelector('#install .mtabs button[data-m=mgr]');if(t)t.click()}));
+document.querySelectorAll('#install .sh,#ctut .sh').forEach(h=>h.addEventListener('click',()=>{const st=h.parentElement,o=!st.classList.contains('open');st.classList.toggle('open',o);h.setAttribute('aria-expanded',o)}));
+document.querySelectorAll('#install .cp,#ctut .cp').forEach(c=>c.addEventListener('click',e=>{e.stopPropagation();const t=c.dataset.copy;const say=m=>{toast.textContent=m;toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1600)};
   if(navigator.clipboard)navigator.clipboard.writeText(t).then(()=>say('Copied')).catch(()=>say('Copy blocked: select the text instead'));else say('Copy blocked: select the text instead')}));
 }
 
@@ -2316,70 +2273,8 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
    setTimeout(()=>{r.style.height=sp.offsetHeight+'px';r.classList.add('open');setTimeout(()=>{sp.style.setProperty('--d','0s');sp.classList.add('in')},500);setTimeout(()=>{r.classList.add('done');r.style.height=''},1150)},k*700)})};
  let todo=groups.slice();const chk=()=>{const lim=innerHeight*.9;todo=todo.filter(g=>{const t=g.getBoundingClientRect().top;if(t<lim){play(g);return false}return true});if(!todo.length)removeEventListener('scroll',q)};
  let qd=false;const q=()=>{if(!qd){qd=true;requestAnimationFrame(()=>{qd=false;chk()})}};addEventListener('scroll',q,{passive:true});addEventListener('resize',q);setTimeout(chk,400)}</script>
-<script>/* a subtle click on buttons: a few milliseconds of filtered noise made in Web Audio (no sound file) */
-{let ac=null,buf=null;const click=()=>{try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();
-  if(!buf){const n=Math.round(ac.sampleRate*.012);buf=ac.createBuffer(1,n,ac.sampleRate);const d=buf.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,6)}
-  const src=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();src.buffer=buf;f.type='bandpass';f.frequency.value=3200;f.Q.value=.9;g.gain.value=.22;src.connect(f).connect(g).connect(ac.destination);src.start()}catch(e){}};
- document.addEventListener('click',e=>{if(!e.isTrusted)return;const b=e.target.closest('button,[role=button],a.btn,a.cta,a.nextj,.h3bar a,.acts a,summary');if(b)click()},true)}</script>
-<script>/* Connect tutorial: a flat replica of Sentinel's own screens that follows the steps. Fields type themselves in and the control to press is outlined. */
-(function(){const root=document.getElementById('ctut');if(!root)return;
- const tabs=[...root.querySelectorAll('.ctabs button')],lists=[...root.querySelectorAll('.ctlist')],prev=root.querySelector('.ctprev'),next=root.querySelector('.ctnext'),count=root.querySelector('.ctcount');
- const page=root.querySelector('.axpage'),where=root.querySelector('.ctwhere'),rail=[...root.querySelectorAll('.axrail i')];
- const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
- let mode='peer',step=0,tok=0;const items=()=>[...root.querySelector(`.ctlist[data-m="${mode}"]`).children];
- /* small builders in the app's own pieces */
- const H=t=>`<div class="axh"><i></i>${t}</div>`,S=(t,m)=>`<div class="axs${m?' mute':''}">${t}</div>`;
- const F=(l,v,o)=>`<div class="axf"><label>${l}</label>${o&&o.seg?`<span class="axseg">${o.seg.map((x,i)=>`<em class="${i===o.on?'on':''}">${x}</em>`).join('')}</span>`:`<span class="axin" data-t="${v}"${o&&o.pw?' data-pw="1"':''}></span>`}</div>`;
- const B=(t,c)=>`<span class="axbtn ${c||''}">${t}</span>`;
- const ROW=(n,sub,right,on)=>`<div class="axrow"><span class="d${on===false?'':' on'}"></span><b>${n}</b><small>${sub||''}</small><span class="sp"></span>${right||''}</div>`;
- const HOST=(n,addr,extra)=>`<div class="axhost">${n}<small>${addr||''}</small>${extra||''}</div>`;
- const ENC='<span class="axtag">ENCRYPTED</span>';
- const FP='4F:2A:9C:11:E0:7B:3D:58 · 92:AF:06:C4:1D:8E:73:B5';
- const MAP=`<div class="axmap"><svg viewBox="0 0 200 210" aria-hidden="true"><path d="M0 150 C40 140 60 170 90 160 S150 120 200 130 V210 H0Z" fill="#cfd6db"/><path d="M20 40 L60 30 L110 55 L150 40 L190 60" fill="none" stroke="#d4d4cf" stroke-width="3"/><path d="M10 100 L70 90 L120 110 L190 95" fill="none" stroke="#d4d4cf" stroke-width="2"/>
-  <g fill="none" stroke="#111" stroke-opacity=".35" stroke-dasharray="3 3"><circle cx="70" cy="62" r="30"/><circle cx="70" cy="62" r="55"/></g>
-  <g font-family="Barlow,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1">
-  <rect x="64" y="56" width="12" height="12" fill="#111"/><rect x="67" y="59" width="6" height="6" fill="#c8ff00"/><text x="80" y="60">HILLTOP</text>
-  <rect x="134" y="136" width="10" height="10" fill="#111"/><text x="148" y="144">COAST</text>
-  <rect x="140" y="70" width="10" height="10" fill="#111"/><text x="154" y="78">FRIEND</text>
-  <circle cx="40" cy="120" r="5" fill="#fff" stroke="#111" stroke-width="2"/><text x="49" y="124">YOU</text></g></svg></div>`;
- /* each step: where you are, which rail icon, and the screen */
- const SCR={
-  peer:[
-   ['On each Sentinel',0,()=>H('APP SETTINGS')+S('THIS MACHINE',1)+`<div class="axform">${F('MACHINE NAME','Hilltop')}${F('LOCATION','51.4416, -2.6047')}</div>`+`<div class="axacts">${B('APPLY CHANGES','go hl')}</div>`],
-   ['On each Sentinel',0,()=>H('APP SETTINGS')+S('CONSOLE PASSWORD')+`<div class="axform">${F('PASSWORD','hilltop-radio',{pw:1})}</div>`+S('THIS MACHINE’S DONGLES')+ROW('ADS-B 1090','port 1234',`<span class="axseg"><em class="on hl">PUBLIC</em><em>PRIVATE</em></span>`)+S('PRIVATE ACCESS',1)+`<div class="axnote">Only these Sentinels may use private dongles.</div><div class="axform">${F('IP ADDRESS','192.168.5.20')}</div>`],
-   ['On your Sentinel',5,()=>H('SDR SETTINGS')+S('SENTINEL HOSTS')+`<div class="axform">${F('IP ADDRESS','192.168.5.21')}${F('LABEL','Hilltop')}${F('PORT','8000')}${F('CONSOLE PASSWORD','hilltop-radio',{pw:1})}${F('ADD SDRS','',{seg:['MANUALLY','AUTOMATICALLY'],on:0})}<div class="axacts">${B('CANCEL','ghost')}${B('ADD','go hl')}</div></div>`],
-   ['On your Sentinel',5,()=>H('SDR SETTINGS')+S('CHECK THE CERTIFICATE')+`<div class="axnote">Compare this with Hilltop’s own Certificate card (App Settings › Security).</div><div class="axfp ax-r" style="animation-delay:.2s">${FP}</div><div class="axok ax-r" style="animation-delay:.9s">Matches Hilltop’s certificate</div><div class="axacts">${B('CANCEL','ghost')}${B('TRUST AND ADD','go hl')}</div>`],
-   ['On your Sentinel',5,()=>H('SDR SETTINGS')+`<div class="axsplit"><div>${S('SENTINEL HOSTS')}${HOST('This machine','1 SDR')}${ROW('Roof RTL-SDR','port 1234')}${HOST('Hilltop','192.168.5.21:8000',ENC)}${ROW('ADS-B 1090','→ Air')}${HOST('Friend','192.168.5.22:8000',ENC)}${ROW('APRS 2m','→ Land')}${HOST('Coast','192.168.5.23:8000',ENC)}${ROW('AIS 162','→ Sea')}</div><div>${S('ON EVERY MAP')}${MAP}</div></div>`]],
-  host:[
-   ['On the Pi',5,()=>H('SDR MANAGER')+S('THIS MACHINE')+ROW('Airband','port 1234',`<span class="axsw"></span>`)+ROW('Marine VHF','port 1238',`<span class="axsw off hl"></span>`,false)+`<div class="axnote">SDR Manager only: the Pi shares its dongles and runs nothing else.</div>`],
-   ['On the Pi',0,()=>H('APP SETTINGS')+S('CONSOLE PASSWORD')+`<div class="axform">${F('PASSWORD','roof-pi',{pw:1})}</div>`+S('EDIT DONGLE')+`<div class="axform">${F('NAME','Marine VHF')}${F('OUTPUT PORT','1238')}${F('VISIBILITY','',{seg:['PUBLIC','PRIVATE'],on:0})}<div class="axacts">${B('APPLY CHANGES','go hl')}</div></div>`],
-   ['On your Sentinel',5,()=>H('SDR SETTINGS')+S('SENTINEL HOSTS')+`<div class="axform">${F('IP ADDRESS','192.168.5.67')}${F('LABEL','Roof Pi')}${F('PORT','8000')}${F('CONSOLE PASSWORD','roof-pi',{pw:1})}${F('ADD SDRS','',{seg:['MANUALLY','AUTOMATICALLY'],on:0})}<div class="axacts">${B('CANCEL','ghost')}${B('ADD','go hl')}</div></div>`],
-   ['On your Sentinel',5,()=>H('SDR SETTINGS')+S('CHECK THE CERTIFICATE')+`<div class="axnote">Compare this with the Pi’s Certificate card (App Settings › Security).</div><div class="axfp ax-r" style="animation-delay:.2s">${FP}</div><div class="axok ax-r" style="animation-delay:.9s">Matches the Pi’s certificate</div><div class="axacts">${B('CANCEL','ghost')}${B('TRUST AND ADD','go hl')}</div>`],
-   ['On your Sentinel',5,()=>H('SDR SETTINGS')+S('SENTINEL HOSTS')+HOST('This machine','1 SDR')+ROW('Roof RTL-SDR','port 1234')+HOST('Roof Pi','192.168.5.67:8000 · 2 SDRs',ENC)+ROW('Airband','port 1234',B('ADD','hl'))+ROW('Marine VHF','port 1238',B('ADD'))+S('THEN PICK IT AS A SOURCE',1)+`<div class="axform">${F('SEA · AIS RADIO','Marine VHF · Roof Pi')}</div>`]],
-  tcp:[
-   ['On each computer with a dongle',null,()=>`<div class="axterm"><div><span class="p">$</span> <span class="axin" style="display:inline;border:0" data-t="rtl_tcp -a 0.0.0.0 -p 1234"></span></div><div class="m ax-r" style="animation-delay:1.6s">Found 1 device(s): Generic RTL2832U</div><div class="m ax-r" style="animation-delay:1.9s">Tuned to 100000000 Hz.</div><div class="m ax-r" style="animation-delay:2.2s">listening...</div></div>`],
-   ['On your Sentinel',5,()=>H('SDR SETTINGS')+S('NON-SENTINEL SDR DEVICES')+`<div class="axform">${F('NAME','Shed dongle')}${F('IP ADDRESS','192.168.5.40')}${F('PORT','1234')}${F('STATUS','',{seg:['ENABLED','DISABLED'],on:0})}<div class="axacts">${B('CANCEL','ghost')}${B('SAVE','go hl')}</div></div>`],
-   ['On your Sentinel',5,()=>H('SDR')+`<div class="axrow"><span class="d on"></span><b>Shed dongle</b><small>192.168.5.40:1234</small><span class="sp"></span><span class="axtag">CONNECTED</span></div><div class="axwf"><canvas width="300" height="60"></canvas></div><div class="axnote" style="margin-top:.8em">No password on rtl_tcp: use it only on a network you trust.</div>`]]};
- /* type each field in turn, then reveal the pulse */
- function typeIn(t){const els=[...page.querySelectorAll('.axin[data-t]')];let k=0;
-  const nextEl=()=>{if(t!==tok||k>=els.length)return;const el=els[k++],txt=el.dataset.t,pw=el.dataset.pw;if(!txt){nextEl();return}
-   if(rm){el.textContent=pw?'•'.repeat(txt.length):txt;nextEl();return}
-   el.classList.add('typing');let i=0;const tick=()=>{if(t!==tok)return;i++;el.textContent=pw?'•'.repeat(i):txt.slice(0,i);if(i<txt.length)setTimeout(tick,38+Math.random()*40);else{el.classList.remove('typing');setTimeout(nextEl,180)}};setTimeout(tick,220)};
-  nextEl()}
- let wfRaf=0;function waterfall(t){const c=page.querySelector('.axwf canvas');if(!c)return;const x=c.getContext('2d');x.fillStyle='#0b1020';x.fillRect(0,0,300,60);let f=0;
-  const run=()=>{if(t!==tok)return;x.drawImage(c,0,0,300,59,0,1,300,59);for(let k=0;k<300;k+=2){const sig=Math.exp(-((k-150+Math.sin(f*.03)*6)**2)/60)+Math.exp(-((k-60)**2)/20)*.5;const v=Math.min(1,Math.random()*.25+sig);x.fillStyle=`hsl(${230-v*170},90%,${8+v*50}%)`;x.fillRect(k,0,2,1)}f++;wfRaf=requestAnimationFrame(run)};run()}
- function render(){const sc=SCR[mode][step];tok++;cancelAnimationFrame(wfRaf);
-  where.innerHTML=`<i></i>${sc[0]}`;rail.forEach((r,i)=>r.classList.toggle('on',i===sc[1]));
-  root.querySelector('.ax').classList.toggle('term',sc[1]===null);
-  page.innerHTML=`<div class="axfade">${sc[2]()}</div>`;typeIn(tok);waterfall(tok)}
- function setUI(){const its=items();step=Math.max(0,Math.min(its.length-1,step));its.forEach((li,i)=>li.classList.toggle('on',i===step));prev.disabled=step===0;next.disabled=step===its.length-1;count.textContent=(step+1)+' / '+its.length;render()}
- tabs.forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.m;tabs.forEach(t=>t.setAttribute('aria-selected',t===b?'true':'false'));lists.forEach(l=>l.hidden=l.dataset.m!==mode);step=0;setUI()}));
- lists.forEach(l=>l.addEventListener('click',e=>{const li=e.target.closest('li');if(!li||e.target.closest('a'))return;step=[...l.children].indexOf(li);setUI()}));
- prev.addEventListener('click',()=>{step--;setUI()});next.addEventListener('click',()=>{step++;setUI()});
- /* start typing only once it scrolls into view */
- let seen=false;new IntersectionObserver(es=>{if(es[0].isIntersecting&&!seen){seen=true;setUI()}},{threshold:.25}).observe(root.querySelector('.ax'));
- setUI();tok++;page.querySelectorAll('.axin[data-t]').forEach(el=>{el.textContent=''});
-})();</script>
+
+
 
 </body>
 </html>
