@@ -1173,8 +1173,8 @@ html.crlock{overflow:hidden}
 #install .mtabs button[aria-selected=true]::after{transform:scale(1)}
 #install .mtabs button:focus-visible{outline:1px solid var(--mute)}
 @media (max-width:700px){#install .mtabs{column-gap:22px!important;row-gap:4px!important}}
-.gl-top .tick{height:200px!important;margin:clamp(14px,2.4vh,28px) 0 0!important;justify-content:flex-start}
-@media (max-width:600px){.gl-top .tick{height:168px!important}}
+.gl-top .tick{height:150px!important;margin:clamp(14px,2.4vh,28px) 0 0!important;justify-content:flex-start}
+@media (max-width:600px){.gl-top .tick{height:126px!important}}
 .oglists h3{margin-bottom:24px!important}
 #install .sbi .ssh,#install .ssh{font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.1em!important}
 /* section points: like the hero ticker, each row opens, then its label wipes in, one after another, once */
@@ -1183,6 +1183,7 @@ html.crlock{overflow:hidden}
 .js-rev .shead .ll .llr.open{margin-bottom:6px}
 .js-rev .shead .ll .llr.done{height:auto;overflow:visible}
 @media (prefers-reduced-motion:reduce){.js-rev .shead .ll .llr{height:auto;overflow:visible;margin-bottom:6px;transition:none}}
+@media (max-width:420px){.gl-top .tick .tkp{letter-spacing:.07em}}
 </style>
 <script>document.documentElement.classList.add('js-title')</script>
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1418,38 +1419,32 @@ window.SUKOV={"aara":[["AARA 1",[[-5.0884,56.3522],[-5.0838,58.1984],[-4.4982,58
 window.HERO_POINTS = {
   "home": [
     "Situational awareness when the internet is down",
-    "Air, sea, space and land from your own radios",
     "Off-grid first, online when you want it",
     "Link Sentinels and SDRs across your network"
   ],
   "air": [
     "Aircraft overhead, decoded by your own SDR",
     "No internet needed, or plug in online feeds",
-    "Military, refuelling and AWACS overlays",
-    "Landing, take-off and overhead alerts"
+    "Military, refuelling and AWACS overlays"
   ],
   "space": [
     "Satellite passes from stored orbit data",
     "ISS and thousands more, fully offline",
-    "Pass predictions for your location",
     "Refresh orbits online when connected"
   ],
   "sea": [
     "Ships off your coast, from your own receiver",
     "AIS decoded locally, no internet needed",
-    "Or stream online feeds when connected",
-    "Track any ship and follow its course"
+    "Or stream online feeds when connected"
   ],
   "land": [
     "APRS stations heard on your own radio",
     "Cars, cyclists and walkers on the move",
-    "Home stations, digipeaters and weather",
     "Works with no internet at all"
   ],
   "sdr": [
     "Listen, scan and record on your own SDRs",
     "DMR and digital voice decoded locally",
-    "Connect remote Sentinels and RTL-SDRs",
     "Share receivers with trusted Sentinels"
   ]
 };
@@ -1637,13 +1632,13 @@ const [L,Rr]=ink(h),W=Rr-L,ps=getComputedStyle(wr),wl=wr.getBoundingClientRect()
  const inkAlign=()=>document.querySelectorAll('.shead').forEach(h=>{const t=h.querySelector('h2'),g=h.querySelector('.ll');if(!t||!g)return;g.style.marginLeft='0px';const r=document.createRange();r.selectNodeContents(t);const tl=r.getBoundingClientRect().left;const sp=g.querySelector('span');if(!sp)return;const cs=getComputedStyle(t),cx=(inkAlign.c||(inkAlign.c=document.createElement('canvas').getContext('2d')));cx.font=cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;const m=cx.measureText((t.textContent||'').trim().toUpperCase());const ink=tl-m.actualBoundingBoxLeft;const d=ink-sp.getBoundingClientRect().left;g.style.marginLeft=d.toFixed(1)+'px';const mk=h.querySelector('.smark');if(mk){mk.style.marginLeft='0px';mk.style.marginLeft=(ink-mk.getBoundingClientRect().left).toFixed(1)+'px'}});
  const fit0=fit;window.__llFit=()=>{fit0();document.querySelectorAll('.shead .ll,.shead .smark').forEach(e=>e.style.marginLeft='0px')};/* points and marker share the content edge with everything else */__llFit();addEventListener('resize',()=>requestAnimationFrame(__llFit));if(document.fonts)document.fonts.ready.then(()=>requestAnimationFrame(__llFit));setTimeout(__llFit,600);setTimeout(__llFit,1600)}
 /* hero points: each section's group, line by line, in the app's label style */
-{const HP=window.HERO_POINTS||{},get=k=>(Array.isArray(HP)?HP:(HP[k]||HP.home||[])).filter(Boolean);let P=get('home'),key='home';
+{const HP=window.HERO_POINTS||{},get=k=>(Array.isArray(HP)?HP:(HP[k]||HP.home||[])).filter(Boolean).slice(0,3);let P=get('home'),key='home';
  const box=document.querySelector('.tick');let i=0,tm=null;
  function retire(it){it.classList.add('go');it.querySelector('.tkp').classList.remove('on');setTimeout(()=>it.classList.add('gone'),550);setTimeout(()=>it.remove(),1100)}
  /* each group arrives top to bottom, one line at a time; on a section change it leaves bottom to top, then the next group arrives the same way */
  let T=[],seq=0;const later=(f,ms)=>T.push(setTimeout(f,ms));
  function addRow(text){const it=document.createElement('div');it.className='tki gone';it.innerHTML='<span class="tkp"><span class="tkt"></span></span>';it.querySelector('.tkt').textContent=text;box.appendChild(it);
-   {const t=it.querySelector('.tkp'),mx=box.clientWidth;if(mx&&t.scrollWidth>mx){const fs=parseFloat(getComputedStyle(t).fontSize);t.style.fontSize=Math.max(10,fs*mx/t.scrollWidth*.97)+'px'}}
+   {const t=it.querySelector('.tkp'),mx=box.clientWidth;let fs=parseFloat(getComputedStyle(t).fontSize),n=0;while(mx&&t.scrollWidth>mx&&fs>8&&n++<30){fs*=.95;t.style.fontSize=fs+'px'}}
    void it.offsetHeight;it.classList.remove('gone');later(()=>it.querySelector('.tkp').classList.add('on'),420)}
  function show(k){get(k).forEach((t,j)=>later(()=>addRow(t),j*560))}
  function close(done){const rows=[...box.children].filter(r=>!r.classList.contains('go')).reverse();rows.forEach((r,j)=>later(()=>{r.classList.add('go');r.querySelector('.tkp').classList.remove('on');setTimeout(()=>r.classList.add('gone'),480);setTimeout(()=>r.remove(),1000);if(j===rows.length-1)later(done,1080)},j*300));if(!rows.length)done()}
@@ -2095,6 +2090,7 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
       c2.strokeStyle='#323c4c';c2.lineWidth=Math.max(1,1.2*sy/spd);c2.lineJoin='round';
       S.bor.forEach(o=>{if(!hit(o.b))return;const r=o.p[0];c2.beginPath();c2.moveTo(X(r[0]),Y(r[1]));for(let k=2;k<r.length;k+=2)c2.lineTo(X(r[k]),Y(r[k+1]));c2.stroke()});
       t2.needsUpdate=true;window.__hpDrawn=true;
+      if(![lo0,lo1,la0,la1].every(Number.isFinite))return;/* no usable view box yet */
       const g=new THREE.SphereGeometry(R+.02,128,128,(lo0+180)*D2R,(lo1-lo0)*D2R,(90-la1)*D2R,(la1-la0)*D2R);
       if(mesh){mesh.geometry.dispose();mesh.geometry=g}else{mesh=new THREE.Mesh(g,mat);scene.add(mesh)}box=b}
     return function(now,llAt,Wd,Ht){if(now-last<(window.__hpDrawn?300:0))return;last=now;

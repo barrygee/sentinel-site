@@ -427,6 +427,7 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
       c2.strokeStyle='#323c4c';c2.lineWidth=Math.max(1,1.2*sy/spd);c2.lineJoin='round';
       S.bor.forEach(o=>{if(!hit(o.b))return;const r=o.p[0];c2.beginPath();c2.moveTo(X(r[0]),Y(r[1]));for(let k=2;k<r.length;k+=2)c2.lineTo(X(r[k]),Y(r[k+1]));c2.stroke()});
       t2.needsUpdate=true;window.__hpDrawn=true;
+      if(![lo0,lo1,la0,la1].every(Number.isFinite))return;/* no usable view box yet */
       const g=new THREE.SphereGeometry(R+.02,128,128,(lo0+180)*D2R,(lo1-lo0)*D2R,(90-la1)*D2R,(la1-la0)*D2R);
       if(mesh){mesh.geometry.dispose();mesh.geometry=g}else{mesh=new THREE.Mesh(g,mat);scene.add(mesh)}box=b}
     return function(now,llAt,Wd,Ht){if(now-last<(window.__hpDrawn?300:0))return;last=now;
