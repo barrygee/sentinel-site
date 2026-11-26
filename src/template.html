@@ -1177,6 +1177,12 @@ html.crlock{overflow:hidden}
 @media (max-width:600px){.gl-top .tick{height:126px!important}}
 .oglists h3{margin-bottom:24px!important}
 #install .sbi .ssh,#install .ssh{font:500 14px/1.25 'Barlow Condensed','Barlow',sans-serif!important;letter-spacing:.1em!important}
+/* section points: like the hero ticker, each row opens, then its label wipes in, one after another, once */
+.js-rev .shead .ll{gap:0!important}
+.js-rev .shead .ll .llr{height:0;overflow:hidden;transition:height .5s ease,margin .5s ease;margin-bottom:0}
+.js-rev .shead .ll .llr.open{margin-bottom:6px}
+.js-rev .shead .ll .llr.done{height:auto;overflow:visible}
+@media (prefers-reduced-motion:reduce){.js-rev .shead .ll .llr{height:auto;overflow:visible;margin-bottom:6px;transition:none}}
 </style>
 <script>document.documentElement.classList.add('js-title')</script>
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1563,7 +1569,7 @@ document.querySelectorAll('[data-points]').forEach(el=>{const list=(window.SECTI
 /* reveal section heads as they scroll into view */
 {document.documentElement.classList.add('js-rev','js-title');const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.shead').forEach(h=>io.observe(h));
  /* (an IntersectionObserver sees a clipped line as zero-size, so check positions on scroll instead) */
- let todo=[...document.querySelectorAll('.shead .ll span, footer.site .ll span')],qd=false;
+ let todo=[...document.querySelectorAll('footer.site .ll span')],qd=false;
  const chk=()=>{qd=false;const lim=innerHeight*.92;let n=0;todo=todo.filter(sp=>{const r=sp.getBoundingClientRect();if(r.height&&r.bottom<=lim&&r.bottom>0){sp.style.setProperty('--d',(n++*.14)+'s');sp.classList.add('in');return false}if(r.bottom<=0){sp.classList.add('in');return false}return true});if(!todo.length)removeEventListener('scroll',q)};
  const q=()=>{if(!qd){qd=true;requestAnimationFrame(chk)}};addEventListener('scroll',q,{passive:true});addEventListener('resize',q);setTimeout(chk,400)}
 
@@ -1613,7 +1619,7 @@ const [L,Rr]=ink(h),W=Rr-L,ps=getComputedStyle(wr),wl=wr.getBoundingClientRect()
    /* the footer wordmark is the header title again: same size, same ink edges */{const m=document.querySelector('footer.site .mark');if(m){const hs=getComputedStyle(h);m.style.fontSize=hs.fontSize;m.style.letterSpacing=hs.letterSpacing;m.style.marginLeft='0px';const [a]=ink(m);m.style.marginLeft=(L-a)+'px'}}};
  window.__inkFit=run;run();const show=()=>{run();document.documentElement.classList.add('inkok')};(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>requestAnimationFrame(show));setTimeout(show,1500);[700,1600,3000].forEach(t=>setTimeout(run,t));addEventListener('resize',()=>requestAnimationFrame(()=>requestAnimationFrame(run)));if(document.fonts)document.fonts.ready.then(()=>setTimeout(run,50))}
 /* label lines never wrap: on narrow screens each group shrinks together until its longest line fits */
-{const fit=()=>{document.querySelectorAll('.shead .ll, footer.site .ll, .gl-top .spec').forEach(g=>{const sp=[...g.children].filter(e=>e.tagName==='SPAN');if(!sp.length)return;sp.forEach(e=>{e.style.fontSize='';e.style.whiteSpace=''});
+{const fit=()=>{document.querySelectorAll('.shead .ll, footer.site .ll, .gl-top .spec').forEach(g=>{const sp=[...g.querySelectorAll(':scope > span, :scope > .llr > span')];if(!sp.length)return;sp.forEach(e=>{e.style.fontSize='';e.style.whiteSpace=''});
    const avail=(g.clientWidth||g.parentElement.clientWidth)-3;if(!avail)return;const base=parseFloat(getComputedStyle(sp[0]).fontSize);const widest=Math.max(...sp.map(e=>e.scrollWidth));
    let f=base,wd=widest;for(let i=0;i<5&&wd>avail+.5&&f>10;i++){f=Math.max(10,Math.floor(f*(avail-1)/wd*10)/10);sp.forEach(e=>e.style.fontSize=f+'px');wd=Math.max(...sp.map(e=>e.scrollWidth))}sp.forEach(e=>e.style.whiteSpace=wd>avail+.5?'normal':'')})};
  const inkAlign=()=>document.querySelectorAll('.shead').forEach(h=>{const t=h.querySelector('h2'),g=h.querySelector('.ll');if(!t||!g)return;g.style.marginLeft='0px';const r=document.createRange();r.selectNodeContents(t);const tl=r.getBoundingClientRect().left;const sp=g.querySelector('span');if(!sp)return;const cs=getComputedStyle(t),cx=(inkAlign.c||(inkAlign.c=document.createElement('canvas').getContext('2d')));cx.font=cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;const m=cx.measureText((t.textContent||'').trim().toUpperCase());const ink=tl-m.actualBoundingBoxLeft;const d=ink-sp.getBoundingClientRect().left;g.style.marginLeft=d.toFixed(1)+'px';const mk=h.querySelector('.smark');if(mk){mk.style.marginLeft='0px';mk.style.marginLeft=(ink-mk.getBoundingClientRect().left).toFixed(1)+'px'}});
@@ -2151,5 +2157,12 @@ const L=o.lane,a=L[o.seg],b=L[o.seg+1],segNm=dist(a,b)||1;o.t+=o.dir*o.kt*dt/360
 {const cv=document.createElement('canvas').getContext('2d');const els=()=>document.querySelectorAll('.shead h2, .gl .gl-h');
  const fix=()=>els().forEach(h=>{h.style.marginLeft='0px';const t=(h.getAttribute('aria-label')||h.textContent||'').trim();if(!t)return;const c=getComputedStyle(h);cv.font=`${c.fontStyle} ${c.fontWeight} ${c.fontSize} ${c.fontFamily}`;const m=cv.measureText(t[0]);const gap=-m.actualBoundingBoxLeft;if(isFinite(gap)&&gap>0&&gap<parseFloat(c.fontSize)*.3)h.style.marginLeft=(-gap)+'px'});
  fix();addEventListener('resize',()=>requestAnimationFrame(fix));if(document.fonts){document.fonts.ready.then(()=>requestAnimationFrame(fix));document.fonts.addEventListener&&document.fonts.addEventListener('loadingdone',()=>requestAnimationFrame(fix))}setTimeout(fix,700);setTimeout(fix,2000)}</script>
+<script>/* section points: reveal once, top to bottom, the same beat as the hero ticker */
+{const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;const groups=[...document.querySelectorAll('.shead .ll')];
+ groups.forEach(g=>[...g.children].filter(e=>e.tagName==='SPAN').forEach(sp=>{const r=document.createElement('div');r.className='llr';sp.replaceWith(r);r.appendChild(sp)}));
+ const play=g=>{[...g.querySelectorAll('.llr')].forEach((r,k)=>{const sp=r.firstElementChild;if(rm){sp.classList.add('in');r.classList.add('open','done');return}
+   setTimeout(()=>{r.style.height=sp.offsetHeight+'px';r.classList.add('open');setTimeout(()=>{sp.style.setProperty('--d','0s');sp.classList.add('in')},500);setTimeout(()=>{r.classList.add('done');r.style.height=''},1150)},k*700)})};
+ let todo=groups.slice();const chk=()=>{const lim=innerHeight*.9;todo=todo.filter(g=>{const t=g.getBoundingClientRect().top;if(t<lim){play(g);return false}return true});if(!todo.length)removeEventListener('scroll',q)};
+ let qd=false;const q=()=>{if(!qd){qd=true;requestAnimationFrame(()=>{qd=false;chk()})}};addEventListener('scroll',q,{passive:true});addEventListener('resize',q);setTimeout(chk,400)}</script>
 </body>
 </html>
